@@ -16,85 +16,96 @@
 <body> 
 
 <!-- Page: Home -->
-<div data-role="page" id="home">
+<div data-role="page" id="home" data-theme="e">
 	<div data-role="header" data-position="fixed" data-id="py_header">
-		<h1>POiNT! Youth</h1>
+		<h1>POiNT! Youth</h1>        
+        <div data-role="navbar">
+        	<ul>
+            	<li><a href="#" data-role="button" data-transition="fade">NEWS FEED</a></li>
+            	<li><a href="#events" data-role="button" data-transition="fade">EVENTS</a></li>
+            </ul>
+        </div><!-- navbar -->
 	</div><!-- header -->
-	<div data-role="content">	
-		<ul data-role="listview">
-        	<li data-role="list-divider">NEWS FEED</li>
-            <li>
-            	<img src="images/v2020.png" alt="" />
-            	<h2>V20:20 - Play the game!</h2>
-            	<p>Are you in for a challenge?</p>
-            </li>
-            <li>
-            	<img src="images/makeapoint.png" alt="" />
-            	<h2>Make a POiNT!</h2>
-            	<p>Tell us what you think of this app.</p>
-            </li>
-            <li>
-            	<img src="images/facebook.png" alt="" />
-            	<h2>Like us on Facebook & Twitter!</h2>
-            	<p>Help us spread the word.</p>
-            </li>
-            <li data-role="list-divider">EVENTS</li>
-            <li>
-            	<h2>POiNT! Connect</h2>
-            </li>
-            <li>
-            	<h2>MAP on tour</h2>
-            </li>
-        </ul>	
+	<div data-role="content">    	
+    	<ul data-role="listview">
+                <li><a href="#action">Play the v20:20 game!</a></li>
+                <li><a href="#">Make a POiNT!</a></li>
+                <li><a href="#">Like us on Facebook!</a></li>
+        </ul>
 	</div><!-- content -->
 	<div data-role="footer" data-position="fixed" data-id="py_footer">
     	<div data-role="navbar">
         	<ul>
-                <li><a href="#" data-role="button" data-icon="home">Home</a></li>
-                <li><a href="#action" data-role="button" data-icon="action">Action</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="mapband">MAPband</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint">Meetings</a></li>
-                <li><a href="#contact" data-role="button" data-icon="info">Contact</a></li> 
+                <li><a href="#" data-role="button" data-icon="home" data-transition="fade">Home</a></li>
+                <li><a href="#action" data-role="button" data-icon="action" data-transition="slideup">Action</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="mapband" data-transition="pop">MAP band</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="slide">Meetings</a></li>
+                <li><a href="#contact" data-role="button" data-icon="info" data-transition="flip">Contact</a></li> 
             </ul>			
         </div><!-- navbar -->
 	</div><!-- footer -->
 </div><!-- page -->
 
 <!-- Page: Events -->
-<div data-role="page" id="events" data-theme="a">
+<div data-role="page" id="events" data-theme="e">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<h1>Events</h1>
+        <div data-role="navbar">
+        	<ul>
+            	<li><a href="#home" data-role="button" data-transition="fade">NEWS FEED</a></li>
+            	<li><a href="#" data-role="button" data-transition="fade">EVENTS</a></li>
+            </ul>
+        </div><!-- navbar -->
+	</div><!-- header -->
+    <div data-role="content">
+    	<ul data-role="listview">
+                <li><a href="#">POiNT! Connect</a></li>
+                <li><a href="#">MAP band in concert</a></li>
+        </ul>                     
+	</div><!-- content -->
+	<div data-role="footer" data-position="fixed" data-id="py_footer">
+    	<div data-role="navbar">
+        	<ul>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="fade">Home</a></li>
+                <li><a href="#" data-role="button" data-icon="action" data-transition="slideup">Action</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="mapband" data-transition="pop">MAP band</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="slide">Meetings</a></li>
+                <li><a href="#contact" data-role="button" data-icon="info" data-transition="flip">Contact</a></li> 
+            </ul>			
+        </div><!-- navbar -->
+	</div><!-- footer -->
+</div><!-- page -->                    	
+
+<!-- Page: Action -->
+<div data-role="page" id="action" data-theme="e">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>Action</h1>
         <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
 	</div><!-- header -->
 	<div data-role="content">	
 		<ul data-role="listview">
         	<li>
-            	<h2>beetje lastig met Buitenland</h2>
-            </li>
-            <li>
-            	<h2>event2</h2>
-            </li>
-            <li>
-            	<h2>event3</h2>
+            	<h2>text</h2>
             </li>
         </ul>
 	</div><!-- content -->
 	<div data-role="footer" data-position="fixed" data-id="py_footer">
     	<div data-role="navbar">
         	<ul>
-                <li><a href="#home" data-role="button" data-icon="home">Home</a></li>
-                <li><a href="#" data-role="button" data-icon="arrow-r">Events</a></li>
-                <li><a href="#action" data-role="button" data-icon="arrow-r">Action</a></li>
-                <li><a href="#contact" data-role="button" data-icon="arrow-r">Contact</a></li>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="fade">Home</a></li>
+                <li><a href="#action" data-role="button" data-icon="action" data-transition="slideup">Action</a></li>
+                <li><a href="#" data-role="button" data-icon="mapband" data-transition="pop">MAP band</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="slide">Meetings</a></li>
+                <li><a href="#contact" data-role="button" data-icon="info" data-transition="flip">Contact</a></li> 
             </ul>			
         </div><!-- navbar -->
 	</div><!-- footer -->
 </div><!-- page -->
 
-<!-- Page: Action -->
-<div data-role="page" id="action" data-theme="a">
+<!-- Page: MAP band -->
+<div data-role="page" id="mapband" data-theme="e">
 	<div data-role="header" data-position="fixed" data-id="py_header">
-		<h1>Action</h1>
+		<h1>MAP band</h1>
         <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
 	</div><!-- header -->
 	<div data-role="content">	
@@ -103,33 +114,92 @@
 	<div data-role="footer" data-position="fixed" data-id="py_footer">
     	<div data-role="navbar">
         	<ul>
-                <li><a href="#home" data-role="button" data-icon="home">Home</a></li>
-                <li><a href="#events" data-role="button" data-icon="arrow-r">Events</a></li>
-                <li><a href="#" data-role="button" data-icon="arrow-r">Action</a></li>
-                <li><a href="#contact" data-role="button" data-icon="arrow-r">Contact</a></li>
+                <li><a href="#ome" data-role="button" data-icon="home" data-transition="fade">Home</a></li>
+                <li><a href="#action" data-role="button" data-icon="action" data-transition="slideup">Action</a></li>
+                <li><a href="#" data-role="button" data-icon="mapband" data-transition="pop">MAP band</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="slide">Meetings</a></li>
+                <li><a href="#contact" data-role="button" data-icon="info" data-transition="flip">Contact</a></li> 
+            </ul>			
+        </div><!-- navbar -->
+	</div><!-- footer -->
+</div><!-- page -->
+
+<!-- Page: Meeting point -->
+<div data-role="page" id="meetingpoint" data-theme="e">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>Meeting point</h1>
+        <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
+	</div><!-- header -->
+	<div data-role="content">	
+		<div data-role="collapsible-set">
+	        <div data-role="collapsible">
+        		<h3>Amsterdam</h3>
+	            <p>Text</p>
+    	    </div><!-- collapsible item -->
+            <div data-role="collapsible">
+        		<h3>Breda</h3>
+	            <p>Text</p>
+    	    </div><!-- collapsible item -->
+            <div data-role="collapsible">
+        		<h3>Den Haag</h3>
+	            <p>Text</p>
+    	    </div><!-- collapsible item -->
+            <div data-role="collapsible">
+        		<h3>Dordrecht</h3>
+	            <p>Text</p>
+    	    </div><!-- collapsible item -->
+            <div data-role="collapsible">
+        		<h3>Gouda</h3>
+	            <p>Text</p>
+    	    </div><!-- collapsible item -->
+            <div data-role="collapsible">
+        		<h3>Utrecht</h3>
+	            <p>Text</p>
+    	    </div><!-- collapsible item -->
+            <div data-role="collapsible">
+        		<h3>Vlaardingen</h3>
+	            <p>Text</p>
+    	    </div><!-- collapsible item -->
+            <div data-role="collapsible">
+        		<h3>Zwolle</h3>
+	            <p>Text</p>
+    	    </div><!-- collapsible item -->
+        </div><!-- collapsible set -->
+	</div><!-- content -->
+	<div data-role="footer" data-position="fixed" data-id="py_footer">
+    	<div data-role="navbar">
+        	<ul>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="fade">Home</a></li>
+                <li><a href="#action" data-role="button" data-icon="action" data-transition="slideup">Action</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="mapband" data-transition="pop">MAP band</a></li>
+                <li><a href="#" data-role="button" data-icon="meetingpoint" data-transition="slide">Meetings</a></li>
+                <li><a href="#contact" data-role="button" data-icon="info" data-transition="flip">Contact</a></li> 
             </ul>			
         </div><!-- navbar -->
 	</div><!-- footer -->
 </div><!-- page -->
 
 <!-- Page: Contact -->
-<div data-role="page" id="contact" data-theme="a">
+<div data-role="page" id="contact" data-theme="e">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<h1>Contact</h1>
         <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
 	</div><!-- header -->
 	<div data-role="content">	
-		Content		
+		<a href="http://www.pointyouth.com" target="_blank" data-role="button">Go to website</a>
+        <a href="mailto:info@pointyouth.com" data-role="button">Send email</a>
+        <a href="http://www.facebook.com/pages/POiNTYouth/111803732303843" target="_blank"  data-role="button">Follow us on Facebook</a>        
 	</div><!-- content -->
 	<div data-role="footer" data-position="fixed" data-id="py_footer">
     	<div data-role="navbar">
         	<ul>
-                <li><a href="#home" data-role="button" data-icon="home">Home</a></li>
-                <li><a href="#events" data-role="button" data-icon="arrow-r">Events</a></li>
-                <li><a href="#action" data-role="button" data-icon="arrow-r">Action</a></li>
-                <li><a href="#" data-role="button" data-icon="arrow-r">Contact</a></li>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="fade">Home</a></li>
+                <li><a href="#action" data-role="button" data-icon="action" data-transition="slideup">Action</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="mapband" data-transition="pop">MAP band</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="slide">Meetings</a></li>
+                <li><a href="#" data-role="button" data-icon="info" data-transition="flip">Contact</a></li> 
             </ul>			
-        </div><!-- navbar --> 
+        </div><!-- navbar -->
 	</div><!-- footer -->
 </div><!-- page -->
 </body>
