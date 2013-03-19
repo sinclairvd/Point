@@ -5,16 +5,17 @@
 <title>POiNT! Youth</title>
 <script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
 <script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+<script src="js/py.js" type="text/javascript"></script>
 <link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
 <link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
-<!--<link href="jquery-mobile/icons-18-black.css" rel="stylesheet" type="text/css"/>
+<link href="jquery-mobile/icons-18-black.css" rel="stylesheet" type="text/css"/>
 <link href="jquery-mobile/icons-18-white.css" rel="stylesheet" type="text/css"/>
-<link href="jquery-mobile/icons-36-black.css" rel="stylesheet" type="text/css"/>-->
+<link href="jquery-mobile/icons-36-black.css" rel="stylesheet" type="text/css"/>
 <link href="jquery-mobile/icons-36-white.css" rel="stylesheet" type="text/css"/>
 <link href="jquery-mobile/jQuery.css" rel="stylesheet" type="text/css"/>
+<link href="css/point.css" rel="stylesheet" type="text/css"/>
 </head> 
 <body> 
-
 <!-- Page: Home -->
 <div data-role="page" id="home" data-theme="e">
 	<div data-role="header" data-position="fixed" data-id="py_header">
@@ -26,24 +27,7 @@
             </ul>
         </div><!-- navbar -->
 	</div><!-- header -->
-	<div data-role="content">    	
-    	<ul data-role="listview" data-inset="true">
-    <li><a href="#">
-        <img src="images/visie2020.png">
-        <h2>Visie 2020 Random Game</h2>
-        <p>Kies willekeurig een plaats en ga!</p></a>
-    </li>
-    <li><a href="#">
-        <img src="images/pinksterfest.png"
-        <h2>POiNT! Pinksterfest</h2>
-        <p>Vrijdag 17 mei, Den Haag</p></a>
-    </li>
-    <li><a href="#">
-        <img src="images/facebook_icon.png">
-        <h2>Like onze facebook pagina</h2>
-        <p>facebook.com/pointyouth</p></a>
-    </li>
-</ul>
+	<div data-role="content" id="newsfeed">    	
 	</div><!-- content -->
 	<div data-role="footer" data-position="fixed" data-id="py_footer">
     	<div data-role="navbar">
@@ -51,12 +35,22 @@
                 <li><a href="#" data-role="button" data-icon="home" data-transition="fade">Home</a></li>
                 <li><a href="#action" data-role="button" data-icon="action" data-transition="slideup">Action</a></li>
                 <li><a href="#mapband" data-role="button" data-icon="mapband" data-transition="pop">MAP band</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" d
-                
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="slide">Meetings</a></li>                
                 <li><a href="#contact" data-role="button" data-icon="info" data-transition="flip">Contact</a></li> 
             </ul>			
         </div><!-- navbar -->
 	</div><!-- footer -->
+</div><!-- page -->
+
+<!-- Page: NewsItem -->
+<div data-role="page" id="news" data-theme="e">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<a href="#home" data-icon="back" data-iconpos="notext" data-direction="reverse">News Feed</a>
+		<h1>News Item</h1>        
+    </div><!-- header -->
+	<div data-role="content"> 
+    	<div id="newsitem"></div>   	
+	</div><!-- content -->
 </div><!-- page -->
 
 <!-- Page: Events -->
@@ -122,7 +116,7 @@
         <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
 	</div><!-- header -->
 	<div data-role="content">	
-		<p><strong>MAP BAND</strong> 	
+		<div class="ui-grid-a" id="videolist"></div>	
 	</div><!-- content -->
 	<div data-role="footer" data-position="fixed" data-id="py_footer">
     	<div data-role="navbar">
@@ -135,6 +129,17 @@
             </ul>			
         </div><!-- navbar -->
 	</div><!-- footer -->
+</div><!-- page -->
+
+<!-- Page: Videoplayer -->
+<div data-role="page" id="videoplayer" data-theme="e">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="fade">MAP band</a>
+		<h1>MAP band</h1>        
+    </div><!-- header -->
+	<div data-role="content"> 
+    	<div id="myplayer"></div>   	
+	</div><!-- content -->
 </div><!-- page -->
 
 <!-- Page: Meeting point -->
@@ -223,6 +228,10 @@ point@theblessingzwolle.com</a> </p>
             </ul>			
         </div><!-- navbar -->
 	</div><!-- footer -->
-</div><!-- page -->
+</div><!-- page -->	
+<script src="http://www.theblessing.nl/PWYM/?json=get_recent_posts&callback=newsFeed" type="text/javascript"></script>
+
+<script src="http://gdata.youtube.com/feeds/users/makeapointband/uploads?alt=json-in-script&max-results=30&callback=mapVideos" type="text/javascript"></script>
+
 </body>
 </html>

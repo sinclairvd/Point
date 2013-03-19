@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+#videolist h3{
+	margin: 15px 0 5px 0;
+	height:35px;
+	overflow:hidden;
+	font-size:1em;	
+}
+
+#videolist img {
+	width:90%;	
+}
+
+#videolist a {
+	text-decoration:none;
+	color:#777;	
+}
+
+#videoplayer .ui-content {
+	margin:0;
+	padding:0;	
+}
+
+#videoplayer iframe {
+	width:100%;
+	min-height:50%;
+}
+
+#videoplayer h3,#myplayer p{
+	padding 0 5%;	
+}
