@@ -35,7 +35,7 @@ function newsItem(id){
 } // newsItem
 
 function mapVideos(data){
-		console.log(data);
+		//debug console.log(data);
 		
 		var output = '';
 		for (var i=0; i<data.feed.entry.length; i++){
@@ -64,8 +64,8 @@ function playVideo(id, title, description){
 	$('#myplayer').html(output);
 }
 
-function study(data){
-	//debug console.log(data);
+function studyFeed(data){
+	console.log(data);
 	var output='<ul data-role="listview" data-filter="true">';	
 	$.each(data.posts,function(key,val){
 
@@ -75,7 +75,7 @@ function study(data){
 		var excerpt = tempDiv.innerHTML;
 
 		output += '<li>';
-		output += '<a href="#study" onclick="studyItem(' + val.id +')">';
+		output += '<a href="#studypost" onclick="studyItem(' + val.id +')">';
 		output += '<h2>' + val.title + '</h2>';		
 		output += (val.thumbnail)?
 			'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
@@ -85,11 +85,11 @@ function study(data){
 		output += '</li>';
 	}); // go through each post
 	output+='</ul>';
-	$('#study').html(output);
+	$('#studyfeed').html(output);
 } // list all the posts
 
 function studyItem(id){
-	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_post&post_id=Study' + id + '&callback=?',
+	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_post&post_id=' + id + '&callback=?',
 		function(data){
 			var output='';
 			output += '<h2>' + data.post.title + '</h2>';
