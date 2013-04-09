@@ -1,1 +1,51 @@
-.ui-icon,.ui-icon-searchfield:after {	background:rgba(0,0,0,0.25);	background-image:url("images/icons-36-white.png");	background-repeat: no-repeat;	-moz-border-radius: 9px;	-webkit-border-radius: 9px;	border-radius: 9px;}.ui-icon-alt {background: #fff;background: rgba(255,255,255,.3);background-image:url("images/icons-36-black.png");background-repeat: no-repeat;}.ui-icon-plus{ width:36px; height:36px; background-position:-36px -36px; }.ui-icon-minus{ width:36px; height:36px; background-position:-108px -36px; }.ui-icon-delete{ width:36px; height:36px; background-position:-180px -36px; }.ui-icon-arrow-r{ width:36px; height:36px; background-position:-252px -36px; }.ui-icon-arrow-l{ width:36px; height:36px; background-position:-324px -36px; }.ui-icon-arrow-u{ width:36px; height:36px; background-position:-396px -36px; }.ui-icon-arrow-d{ width:36px; height:36px; background-position:-468px -36px; }.ui-icon-search,.ui-icon-searchfield:after{ width:36px; height:36px; background-position:-540px -36px; }.ui-icon-check{ width:36px; height:36px; background-position:-612px -36px; }.ui-icon-gear{ width:36px; height:36px; background-position:-684px -36px; }.ui-icon-refresh{ width:36px; height:36px; background-position:-756px -36px; }.ui-icon-forward{ width:36px; height:36px; background-position:-828px -36px; }.ui-icon-back{ width:36px; height:36px; background-position:-900px -36px; }.ui-icon-home{ width:36px; height:36px; background-position:-972px -36px; }.ui-icon-grid{ width:36px; height:36px; background-position:-1044px -36px; }.ui-icon-star{ width:36px; height:36px; background-position:-1116px -36px; }.ui-icon-alert{ width:36px; height:36px; background-position:-1188px -36px; }.ui-icon-info{ width:36px; height:36px; background-position:-1260px -36px; }.ui-icon-checkbox-on{ width:36px; height:36px; background-position:-1332px -36px; }.ui-icon-checkbox-off{ width:36px; height:36px; background-position:-1404px -36px; }.ui-icon-radio-on{ width:36px; height:36px; background-position:-1476px -36px; }.ui-icon-radio-off{ width:36px; height:36px; background-position:-1548px -36px; }.ui-icon-Events{ width:36px; height:36px; background-position:-1620px -36px; }.ui-icon-mapband{ width:36px; height:36px; background-position:-1692px -36px; }.ui-icon-photos{ width:36px; height:36px; background-position:-1764px -36px; }.ui-icon-action{ width:36px; height:36px; background-position:-1836px -36px; }.ui-icon-meetingpoint{ width:36px; height:36px; background-position:-1908px -36px; }.ui-icon-give{ width:36px; height:36px; background-position:-1980px -36px; }.ui-icon-prayer{ width:36px; height:36px; background-position:-2052px -36px; }.ui-icon-sermons{ width:36px; height:36px; background-position:-2124px -36px; }.ui-icon-video{ width:36px; height:36px; background-position:-2196px -36px; }.ui-icon-music{ width:36px; height:36px; background-position:-2268px -36px; }.ui-icon-messages{ width:36px; height:36px; background-position:-2340px -36px; }.ui-icon-profile{ width:36px; height:36px; background-position:-2412px -36px; }
+/* .ui-icon,
+.ui-icon-searchfield:after {
+	background:rgba(0,0,0,0.25);
+	background-image:url("images/icons-36-white.png");
+	background-repeat: no-repeat;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	border-radius: 9px;
+}
+.ui-icon-alt {
+background: #fff;
+background: rgba(255,255,255,.3);
+background-image:url("images/icons-36-black.png");
+background-repeat: no-repeat;
+}
+.ui-icon-plus{ width:36px; height:36px; background-position:-36px -36px; }
+.ui-icon-minus{ width:36px; height:36px; background-position:-108px -36px; }
+.ui-icon-delete{ width:36px; height:36px; background-position:-180px -36px; }
+.ui-icon-arrow-r{ width:36px; height:36px; background-position:-252px -36px; }
+.ui-icon-arrow-l{ width:36px; height:36px; background-position:-324px -36px; }
+.ui-icon-arrow-u{ width:36px; height:36px; background-position:-396px -36px; }
+.ui-icon-arrow-d{ width:36px; height:36px; background-position:-468px -36px; }
+.ui-icon-search,
+.ui-icon-searchfield:after{ width:36px; height:36px; background-position:-540px -36px; }
+.ui-icon-check{ width:36px; height:36px; background-position:-612px -36px; }
+.ui-icon-gear{ width:36px; height:36px; background-position:-684px -36px; }
+.ui-icon-refresh{ width:36px; height:36px; background-position:-756px -36px; }
+.ui-icon-forward{ width:36px; height:36px; background-position:-828px -36px; }
+.ui-icon-back{ width:36px; height:36px; background-position:-900px -36px; }
+.ui-icon-home{ width:36px; height:36px; background-position:-972px -36px; }
+.ui-icon-grid{ width:36px; height:36px; background-position:-1044px -36px; }
+.ui-icon-star{ width:36px; height:36px; background-position:-1116px -36px; }
+.ui-icon-alert{ width:36px; height:36px; background-position:-1188px -36px; }
+.ui-icon-info{ width:36px; height:36px; background-position:-1260px -36px; }
+.ui-icon-checkbox-on{ width:36px; height:36px; background-position:-1332px -36px; }
+.ui-icon-checkbox-off{ width:36px; height:36px; background-position:-1404px -36px; }
+.ui-icon-radio-on{ width:36px; height:36px; background-position:-1476px -36px; }
+.ui-icon-radio-off{ width:36px; height:36px; background-position:-1548px -36px; }
+*/
+.ui-icon-Events{ width:36px; height:36px; background-position:-1620px -36px; }
+.ui-icon-mapband{ width:36px; height:36px; background-position:-1692px -36px; }
+.ui-icon-photos{ width:36px; height:36px; background-position:-1764px -36px; }
+.ui-icon-action{ width:36px; height:36px; background-position:-1836px -36px; }
+.ui-icon-meetingpoint{ width:36px; height:36px; background-position:-1908px -36px; }
+.ui-icon-give{ width:36px; height:36px; background-position:-1980px -36px; }
+.ui-icon-prayer{ width:36px; height:36px; background-position:-2052px -36px; }
+.ui-icon-sermons{ width:36px; height:36px; background-position:-2124px -36px; }
+.ui-icon-video{ width:36px; height:36px; background-position:-2196px -36px; }
+.ui-icon-music{ width:36px; height:36px; background-position:-2268px -36px; }
+.ui-icon-messages{ width:36px; height:36px; background-position:-2340px -36px; }
+.ui-icon-profile{ width:36px; height:36px; background-position:-2412px -36px; }
