@@ -1,4 +1,4 @@
-/* .ui-icon,
+.ui-icon,
 .ui-icon-searchfield:after {
 	background:rgba(0,0,0,0.25);
 	background-image:url("images/icons-18-white.png");
@@ -36,7 +36,7 @@ background-repeat: no-repeat;
 .ui-icon-checkbox-off{ width:18px; height:18px; background-position:-702px -18px; }
 .ui-icon-radio-on{ width:18px; height:18px; background-position:-738px -18px; }
 .ui-icon-radio-off{ width:18px; height:18px; background-position:-774px -18px; }
-*/
+
 .ui-icon-Events{ width:18px; height:18px; background-position:-810px -18px; }
 .ui-icon-mapband{ width:18px; height:18px; background-position:-846px -18px; }
 .ui-icon-photos{ width:18px; height:18px; background-position:-882px -18px; }
