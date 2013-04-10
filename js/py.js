@@ -76,10 +76,10 @@ function studyFeed(data){
 
 		output += '<li>';
 		output += '<a href="#studypost" onclick="studyItem(' + val.id +')">';
-		output += '<h2>' + val.title + '</h2>';		
-		output += (val.thumbnail)?
+		output += '<h2 style="text-align:left;">' + val.title + '</h2>';		
+		/* excluded by alissa 10/04/13 output += (val.thumbnail)?
 			'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
-			'<img src="images/makeapoint.png" alt="POiNT! Logo" />';
+			'<img src="images/makeapoint.png" alt="POiNT! Logo" />'; */
 		output += '<p>' + excerpt + '</p>';
 		output += '</a>';
 		output += '</li>';

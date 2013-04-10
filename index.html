@@ -42,8 +42,8 @@
         	<ul>
                 <li><a href="#" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP BAND</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEETINGS</a></li>                
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
         </div><!-- navbar -->
@@ -51,10 +51,10 @@
 </div><!-- page -->
 
 <!-- Page: News -->
-<div data-role="page" id="news" data-theme="a">
+<div data-role="page" id="news" data-theme="a" data-add-back-btn="true" data-back-btn-text="Back">
 	<div data-role="header" data-position="fixed" data-id="py_header">
-		<a href="#home" data-icon="back" data-iconpos="notext" data-direction="reverse">News Feed</a>
-		<h1>News Item</h1>        
+		<h1>News Item</h1>  
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>      
     </div><!-- header -->
 	<div data-role="content"> 
     	<div id="newsitem"></div>   	
@@ -65,7 +65,7 @@
 <div data-role="page" id="action" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<h1>Action</h1>
-        <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
 	<div data-role="content">	
 		<h2>Geolocation</h2>
@@ -74,11 +74,11 @@
 	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
     	<div data-role="navbar">
         	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
-                <li><a href="#" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP BAND</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEETINGS</a></li>                
-                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li>  
+                <li><a href="#" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
+                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
         </div><!-- navbar -->
 	</div><!-- footer -->
@@ -88,7 +88,7 @@
 <div data-role="page" id="mapband" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<h1>MAP band</h1>
-        <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
 	<div data-role="content">
     <img src="images/mapband.png" style="float:left;padding-right:10px" />
@@ -102,10 +102,10 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
 	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
     	<div data-role="navbar">
         	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#" data-role="button" data-icon="music" data-transition="flip">MAP BAND</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEETINGS</a></li>                
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
         </div><!-- navbar -->
@@ -116,7 +116,8 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
 <div data-role="page" id="videoplayer" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="fade">MAP band</a>
-		<h1>MAP band</h1>        
+		<h1>MAP band</h1>  
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>      
     </div><!-- header -->
 	<div data-role="content"> 
     	<div id="myplayer"></div>   	
@@ -127,10 +128,16 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
 <div data-role="page" id="meetingpoint" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<h1>Meeting point</h1>
-        <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
+    <div data-role="navbar">
+        <ul>
+            <li><a href="#" data-role="button" data-transition="fade">NEWS FEED</a></li>
+            <li><a href="#contact" data-role="button" data-transition="fade">CONTACT</a></li>
+        </ul>
+    </div><!-- navbar -->     
 	</div><!-- header -->
-	<div data-role="content">	
-		<div data-role="collapsible-set">
+	<div data-role="content">
+		<div data-role="collapsible-set">       
 	        <div data-role="collapsible">
         		<h3>Amsterdam</h3>
 	            <p><table span="2" cellpadding="10"><tr><td><img src="images/sinclair.png"></td><td><strong>Adres:</strong> Calvariekerk<br>Derkinderenstraat 90, Amsterdam<br><strong>Tijd:</strong> zaterdag om 19.00 uur<br><strong>Youth Manager:</strong> Sinclair van Dalen<br><strong>E-mail:</strong> <a href="mailto:point@theblessingamsterdam.com?subject=POiNT!APP Contact">
@@ -176,10 +183,10 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
 	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
     	<div data-role="navbar">
         	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP BAND</a></li>
-                <li><a href="#" data-role="button" data-icon="meetingpoint" data-transition="flip">MEETINGS</a></li>                
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
         </div><!-- navbar -->
@@ -190,22 +197,25 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
 <div data-role="page" id="contact" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<h1>Contact</h1>
-        <a href="#home" data-icon="home" data-iconpos="notext">Home</a>
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
-	<div data-role="navbar">	
-		<a href="http://www.pointyouth.com" target="_blank" data-role="button">Website</a>
-        <a href="http://www.facebook.com/pages/POiNTYouth/111803732303843" target="_blank"  data-role="button">Facebook</a>
-        <a href="http://www.youtube.com/makeapointband" target="_blank"  data-role="button">YouTube channel</a>
-         <a href="mailto:info@pointyouth.com" data-role="button">Write us</a>
-         <a href="mailto:info@gpnetwork.com" data-role="button">Prayer Request</a>           
+	<div data-role="content">	
+    	<ul data-role="listview">
+			<li data-icon="false"><a href="http://www.pointyouth.com" target="_blank">Website</a></li>
+        	<li data-icon="false"><a href="http://www.facebook.com/pages/POiNTYouth/111803732303843" target="_blank">Facebook</a></li>
+        	<li data-icon="false"><a href="http://www.youtube.com/makeapointband" target="_blank" >YouTube channel</a></li>
+        	<li data-icon="false"><a href="mailto:info@pointyouth.com" >Write us</a></li>
+        	<li data-icon="false"><a href="mailto:info@gpnetwork.com" >Prayer Request</a></li>  
+        	<li data-icon="arrow-r"><a href="#maasbachradio" data-icon="arrow-r" data-transition="slide">Listen to Maasbach Radio</a></li>
+   		</ul>                 
 	</div><!-- content -->
 	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
     	<div data-role="navbar">
         	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP BAND</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEETINGS</a></li>                
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
         </div><!-- navbar -->
@@ -216,24 +226,63 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
 <div data-role="page" id="study" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<h1>Study</h1>
-        <a href="#home" data-icon="home" data-iconpos="notext">Home</a>       
+        <div data-role="navbar">
+        	<ul>
+            	<li><a href="#" data-role="button" data-transition="fade">NEWS FEED</a></li>
+            	<li><a href="#contact" data-role="button" data-transition="fade">CONTACT</a></li>
+            </ul>
+        </div><!-- navbar -->        
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>       
     </div><!-- header -->
 	<div data-role="content"> 
     	<div id="studyfeed"></div>   	
 	</div><!-- content -->
-	
+    <div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
+    	<div data-role="navbar">
+        	<ul>
+                <li><a href="#" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
+                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
+            </ul>			
+        </div><!-- navbar -->
+	</div><!-- footer -->	
 </div><!-- page -->	
 
 <!-- Page: StudyItem -->
 <div data-role="page" id="studypost" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
-		<a href="#study" data-icon="back" data-iconpos="notext" data-direction="reverse">News Feed</a>
+		<a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 		<h1>Study</h1>        
     </div><!-- header -->
 	<div data-role="content"> 
     	<div id="studyitem"></div>   	
 	</div><!-- content -->
 </div><!-- page -->
+
+<!-- Page: MaasbachRadio -->
+<div data-role="page" id="maasbachradio" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>Maasbach Radio</h1>
+        <div data-role="navbar">
+        	<ul>
+            	<li><a href="#" data-role="button" data-transition="fade">NEWS FEED</a></li>
+            	<li><a href="#contact" data-role="button" data-transition="fade">CONTACT</a></li>
+            </ul>
+        </div><!-- navbar -->        
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>       
+    </div><!-- header -->
+	<div data-role="content"> 
+    	<p>Go mobile and listen to uplifting music everywhere you want. With the Maasbach Radio app you don't have to miss a second. On your way to work, in traffic, or just not behind a computer, The Blessing Family Music Station will bring you uplifting music, not heavy, not light, just right!<p>
+    	<ul data-role="listview" data-inset="true" data-diveder-theme="c">
+        	<li data-role="list-divider">Choose Your Device</li>
+			<li data-icon="arrow-r"><a href="https://itunes.apple.com/us/app/maasbach-radio/id565101090?mt=8" target="_blank" class="alignleft">iPhone</a></li>
+			<li data-icon="arrow-r"><a href="https://play.google.com/store/apps/details?id=com.maasbach&hl=nl" target="_blank" class="alignleft">Android</a></li>
+            <li data-icon="arrow-r"><a href="rtsp://maasbachradio.hollanddata.net/live/mradio64" target="_blank" class="alignleft">Other Mobile Device</a></li>
+   		</ul>     	
+	</div><!-- content -->	
+</div><!-- page -->	
 
 <script src="http://www.theblessing.nl/PWYM/?json=get_recent_posts&callback=newsFeed" type="text/javascript"></script>
 
