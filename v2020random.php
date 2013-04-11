@@ -1,11 +1,15 @@
 <?php
 // use this to further code this http://mobile.tutsplus.com/tutorials/mobile-web-apps/jquery-mobile-forms/
-// and http://api.geonames.org/search?country=Netherlands&maxRows=10&username=pointyouth
+// use geonames.org api to search for cities in given country
+// syntax url http://api.geonames.org/searchJSON?&country=NL&maxRows=10&username=pointyouth
+// see geonames.org for more options
+// use this to add team members:
+// http://view.jquerymobile.com/1.3.1/dist/demos/examples/collapsibles/dynamic-collapsible.html#&ui-state=dialog
 // Vision 20:20 Random form script
 if (isset($_POST)){
 	//declare variables
 	//email setting
-	$emailoption = true;
+	$emailoption = false;
 	//form fields
 	$teamname = "";
 	$yourname = "";
@@ -39,7 +43,7 @@ if (isset($_POST)){
 		$teammember10 = $_POST['teammember10'];
 		
 		//debug code
-		/*
+		
 		echo("teamname: ".$teamname."\n");
 		echo("yourname: ".$yourname."\n");
 		echo("youremail: ".$youremail."\n");
@@ -54,7 +58,6 @@ if (isset($_POST)){
 		echo("teammember8: $teammember8 \n");
 		echo("teammember9: $teammember9 \n");
 		echo("teammember10: $teammember10 \n");
-		*/
 		
 		if ($emailoption){
 			
