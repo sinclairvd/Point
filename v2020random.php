@@ -1,4 +1,6 @@
 <?php
+// use this to further code this http://mobile.tutsplus.com/tutorials/mobile-web-apps/jquery-mobile-forms/
+// and http://api.geonames.org/search?country=Netherlands&maxRows=10&username=pointyouth
 // Vision 20:20 Random form script
 if (isset($_POST)){
 	//declare variables
