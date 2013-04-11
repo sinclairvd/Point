@@ -71,7 +71,7 @@ if (isset($_POST)){
 			$message .= "Thank you for joining Vision 20:20 Random!<br />";
 			$message .= "Your random location is: <b>".$yourcountry."</b><br /><br />";
 			$message .= "Your random team name is: <b>".$teamname."</b><br /><br />";
-			$message .= "Order your V2020 Random package with your flag, leaflets and instructions on <a href='http://www.bijbelhuis.nl/Shop/Index.php?page=getinfo&id=Visie%202020%20Random' target='_blank'>www.bijbelhuis.nl</a><br /><br />";
+			$message .= "Order your V2020 Random package with your flag, leaflets and instructions on <a href='http://www.bijbelhuis.nl/Shop/Index.php?page=getinfo&id=RANDOM2020' target='_blank'>www.bijbelhuis.nl</a><br /><br />";
 			$message .= $yourname.", please do not hesitate in contacting us back in case you need any further assistance.<br /><br />";
 			$message .= "Best regards,<br />";
 			$message .= "POiNT! Youth Team<br />";
