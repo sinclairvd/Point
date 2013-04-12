@@ -189,8 +189,7 @@ Maar nu is de vraag, hoe doe je het? Daarom kregen we handige tips & tricks die 
 				</div>
                 <div data-role="fieldcontain">
    					<label for="country">Country:</label>
-					<select name="country" id="country">
-				    		<option value="" data-placeholder="true" SELECTED>Select country</option>
+					<select name="country" id="country">				    		
                             <option value="AF">Afghanistan</option>
                             <option value="AL">Albania</option>
                             <option value="DZ">Algeria</option>
@@ -246,7 +245,7 @@ Maar nu is de vraag, hoe doe je het? Daarom kregen we handige tips & tricks die 
                             <option value="CT">Cote D'Ivoire</option>
                             <option value="HR">Croatia</option>
                             <option value="CU">Cuba</option>
-                            <option value="CB">Curacao</option>
+                            <option value="CW">Curacao</option>
                             <option value="CY">Cyprus</option>
                             <option value="CZ">Czech Republic</option>
                             <option value="DK">Denmark</option>
@@ -343,7 +342,7 @@ Maar nu is de vraag, hoe doe je het? Daarom kregen we handige tips & tricks die 
                             <option value="NU">Nauru</option>
                             <option value="NP">Nepal</option>
                             <option value="AN">Netherland Antilles</option>
-                            <option value="NL">Netherlands (Holland, Europe)</option>
+                            <option value="NL" SELECTED>Netherlands (Holland, Europe)</option>
                             <option value="NV">Nevis</option>
                             <option value="NC">New Caledonia</option>
                             <option value="NZ">New Zealand</option>
@@ -440,6 +439,7 @@ Maar nu is de vraag, hoe doe je het? Daarom kregen we handige tips & tricks die 
 					</select>
 				</div>
                 <div id="city"></div>
+                <div id="map_canvas"></div>
                 <div data-role="fieldcontain">
                 	<label for="teammember1">Team member 1</label>
 					<input type="text" name="teammember1" id="teammember1" value="" placeholder="Teammember1" />
@@ -712,24 +712,65 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
 //add onchange event to country select element
 $("#country").bind( "change", function() {
   //debug alert("hello");
-  //declare city variable
-  var city = "";
+  //declare country variable
+  var country = "";
+  
+  //declare amount of cities to lookup
+  var cityCount = 1000;
+  
+  //declare en set random number between 1-100 for selecting random item in city array
+  var randomNumber = Math.floor(Math.random() * cityCount);
+  
+  //declare and set city longtitude and latitude to default (JMWZ)
+  var defaultCoordinates = '52.070511,4.28381';
+  var lookupCoordinates = defaultCoordinates;
+  
   //for each selected value in country
   $("select option:selected").each(function () {
-	  		city += $(this).val();
-			var test = 'http://api.geonames.org/searchJSON?&country=' + city +'&maxRows=10&username=pointyouth';
-			alert('stad ' + test);
-	  		//$.getJSON('http://api.geonames.org/searchJSON?&country=' + $(this).text() + '&maxRows=10&username=pointyouth',
-			$.getJSON('http://api.geonames.org/searchJSON?&country=' + city +'&maxRows=10&username=pointyouth',
-			function(data){
+	  		country += $(this).val();
+			//debug var test = 'http://api.geonames.org/searchJSON?&country=' + city +'&maxRows=' + cityCount + '&username=pointyouth';
+			//debug alert('stad ' + test);
+			//get JSON Data with list of city in given country	  		
+			$.getJSON('http://api.geonames.org/searchJSON?&country=' + country +'&maxRows=' + cityCount + '&username=pointyouth',
+			function(data){	
+				//alter cityCount when the returned cityCount is lower then declared
+				if (data.totalResultsCount == 0){
+					$('#city').html('<h2>Sorry no random city available</h2>');	
+					return;
+				}
+				else if (data.totalResultsCount < cityCount){
+
+					cityCount = data.totalResultsCount;	
+				}			
+				
+				//to filter out only cities in JSON result, we lookup another randomNumber if not a city but a region is returned
+				while(data.geonames[randomNumber].fclName != 'city, village,...'){
+					randomNumber = Math.floor(Math.random() * cityCount);
+				}				
+				
+				// output random city
 				var output='';
-				output += '<h2>' + data.geonames[1].toponymName + '</h2>';				
+				output += '<h2>' + data.geonames[randomNumber].toponymName + '</h2>';	
+				
+				//debug output += cityCount;			
 				$('#city').html(output);
-			});	// get JSON Data for News Items
-       //debug city += $(this).text() + " ";
-  });
-  //set city div
-  //$("#city").text(city);
+				
+				//update lookupCoordinates with longtitude and latitude of returned city 
+				lookupCoordinates = data.geonames[randomNumber].lat + "," + data.geonames[randomNumber].lng;
+				//alert(lookupCoordinates);
+				//return;
+				
+				//clean out earlier maps
+				$('#map_canvas').gmap('destroy');
+				//draw google maps api							
+				$('#map_canvas').gmap({'zoom':9, 'center':lookupCoordinates}).bind('init', function(ev, map) {
+					$('#map_canvas').gmap('addMarker', {'position': lookupCoordinates, 'bounds': false,'animation':google.maps.Animation.BOUNCE}).click(function() {
+						$('#map_canvas').gmap('openInfoWindow', {'content': 'Your Vision 20:20 Random place!'}, this);
+					});
+				});			
+				
+			});	
+  });  
 });
 </script>
 <!--<script type="text/javascript">
