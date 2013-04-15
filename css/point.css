@@ -9,6 +9,9 @@
     user-select: none;
 }
 
+.ui-content a:not(.ui-btn,.ui-link-inherit) { color: #1FBECA; }
+.ui-content a:not(.ui-btn,.ui-link-inherit):hover { color: #FFFFFF; }
+
 #videolist h3{
 	/*margin: 15px 0 5px 0;
 	height:35px;
