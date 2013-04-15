@@ -47,7 +47,7 @@ function mapVideos(data){
 				var blocktype = ((i % 2)===1) ? 'b': 'a';
 				
 				output += '<div class="ui-block-' + blocktype + '">';
-				output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )"';
+				output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';
 				output += '<h3 class="movietitle">' + title + '</h3>';
 				output += '<img src="' + thumbnail + '" alt="' + title +'" />';
 				output += '</a>';
@@ -149,3 +149,112 @@ function getPosition(){
         navigator.notification.alert('error: ' + error.message + '\n' + 'code: ' + error.code);
     }, geoOptions);
 }
+
+//randomCity function
+function randomCity(selectedCountry){
+	//debug alert("hello");
+	//declare country variable
+	var country = selectedCountry;
+  
+	//declare amount of cities to lookup
+	var cityCount = 500;
+  	
+	//declare en set random number between 1-100 for selecting random item in city array
+  	var randomNumber = Math.floor(Math.random() * cityCount);
+  
+  	//declare and set city longtitude and latitude to default (JMWZ)
+  	var defaultCoordinates = '52.070511,4.28381';
+  	var lookupCoordinates = defaultCoordinates;
+  
+  	//for each selected value in country
+  	//debug var test = 'http://api.geonames.org/searchJSON?&country=' + city +'&maxRows=' + cityCount + '&username=pointyouth';
+	//debug alert('stad ' + test);
+	//get JSON Data with list of city in given country	  		
+	$.getJSON('http://api.geonames.org/searchJSON?&country=' + country +'&maxRows=' + cityCount + '&username=pointyouth',
+	function(data){	
+		//alter cityCount when the returned cityCount is lower then declared
+		if (data.totalResultsCount == 0){
+			$('#city').html('<h2>Sorry no random city available</h2>');	
+			return;
+		}
+		else if (data.totalResultsCount < cityCount){
+			cityCount = data.totalResultsCount;	
+		}			
+				
+		//to filter out only cities in JSON result, we lookup another randomNumber if not a city but a region is returned
+		while(data.geonames[randomNumber].fclName != 'city, village,...'){
+			randomNumber = Math.floor(Math.random() * cityCount);
+		}				
+				
+		// output random city
+		var output='';
+		output += '<h2>' + data.geonames[randomNumber].toponymName + '</h2>';
+				
+		//declare and set city variable
+		var city = data.geonames[randomNumber].toponymName;	
+				
+		//debug output += cityCount;			
+		$('#city').html("<p>Your Vision 20:20 Random city is:</p>" + output);
+				
+		//update lookupCoordinates with longtitude and latitude of returned city 
+		lookupCoordinates = data.geonames[randomNumber].lat + "," + data.geonames[randomNumber].lng;
+		//alert(lookupCoordinates);
+		//return;
+				
+		//clean out earlier maps
+		$('#map_canvas').gmap('destroy');
+		
+		//declare marker icon url
+		var image = 'flag.png';
+		
+		//declare and set infowindow content
+		var infowindowContent = '<p class="infowindow">Your Vision 20:20 Random place!<br /><b>' + city +'</b></p>';
+		
+		//draw google maps api							
+		$('#map_canvas').gmap({'zoom':8, 'center':lookupCoordinates}).bind('init', function(ev, map) {
+			$('#map_canvas').gmap('addMarker', {'position': lookupCoordinates, 'bounds': false,'animation':google.maps.Animation.BOUNCE,'icon':image}).click(function() {
+						$('#map_canvas').gmap('openInfoWindow', {'content': infowindowContent}, this);
+						});
+					});
+		});	  
+	}
+
+var formData = {};
+var selectedCountry = "";
+
+function handleV2020RandomForm(e) {
+        var next = "";
+		alert("7");
+        
+        //gather the fields
+        var data = $(this).serializeArray();
+		//debug console.log("test");
+		//debug console.log(data);
+        //store them - assumes unique names
+        for(var i=0; i<data.length; i++) {
+            //If nextStep, it's our metadata, don't store it in formdata
+            if(data[i].name=="nextStep") { next=data[i].value; continue; }
+			//if country, store it globally for later use with gmaps
+			if (data[i].name=="country"){selectedCountry=data[i].value;}
+            //if we have it, add it to a list. This is not "comma" safe.
+            if(formData.hasOwnProperty(data[i].name)) formData[data[i].name] += ","+data[i].value;
+            else formData[data[i].name] = data[i].value;
+        }
+		//debug console.log("country" + selectedCountry);
+
+        //now - we need to go the next page...
+        //if next step isn't a full url, we assume internal link
+        //logic will be, if something.something, do a post
+        if(next.indexOf(".") == -1) {
+			//debug alert("8" + next);
+            var nextPage = "#" + next;
+            $.mobile.changePage(nextPage);
+        } else {
+			//debug alert("9");
+			randomCity(selectedCountry);
+            $.mobile.changePage(next, {type:"post",data:formData});
+        }
+		//debug alert("10");
+        e.preventDefault();
+    
+};

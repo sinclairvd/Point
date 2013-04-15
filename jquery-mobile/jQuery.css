@@ -107,7 +107,7 @@
 .ui-body-a .ui-link{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(57,199,215);
 	line-height:120%;
 	text-align:left;
@@ -117,7 +117,7 @@
 .ui-body-a .ui-link:hover{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(57,199,215);
 	line-height:120%;
 	text-align:left;

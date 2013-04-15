@@ -64,9 +64,9 @@ if (isset($_POST)){
 			// To send HTML mail, the Content-type header must be set
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			$headers .= "From: events@maasbach.com\r\n";
-			$headers .= "Reply-To: events@maasbach.com\r\n";
-			$headers .= "Return-Path: events@maasbach.com\r\n";
+			$headers .= "From: Pointyouth.com <info@pointyouth.com>\r\n";
+			$headers .= "Reply-To: info@pointyouth.com\r\n";
+			//$headers .= "Return-Path: events@maasbach.com\r\n";
 			$headers .= "BCC: webmaster@maasbach.com,events@maasbach.com\r\n";
 			
 			$to = $youremail;
@@ -80,16 +80,19 @@ if (isset($_POST)){
 			$message .= $yourname.", please do not hesitate in contacting us back in case you need any further assistance.<br /><br />";
 			$message .= "Best regards,<br />";
 			$message .= "POiNT! Youth Team<br />";
+			$message .= "<a href='mailto:info@pointyouth.com'>info@pointyouth.com</a><br />";
 			$message .= "<a href='http://www.pointyouth.com' target='_blank'>www.pointyouth.com</a>";
 			
 			// email to user
 			mail($to,$subject,$message,$headers);
 		}
+		return true;
 		
 	}catch(Exception $e){
 		//debug echo 'Caught exception: ',  $e->getMessage(), "\n";
 		echo("We are sorry, something went wrong. Please try again.<br />");
 		echo("<a href='mailto:webmaster@maasbach.com?subject=Vision 20:20 Random'>Contact us</a>");	
 		}
+	return false;
 }
 ?>
