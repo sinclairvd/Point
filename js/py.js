@@ -44,9 +44,12 @@ function mapVideos(data){
 				var description = data.feed.entry[i].media$group.media$description.$t;
 				var id = data.feed.entry[i].id.$t.substr(38);
 				
-				var blocktype = ((i % 2)===1) ? 'b': 'a';
+				// edited by Francis 20130415 turn  this code on to use two column design
+				//var blocktype = ((i % 2)===1) ? 'b': 'a';				
+				//output += '<div class="ui-block-' + blocktype + '">';
 				
-				output += '<div class="ui-block-' + blocktype + '">';
+				output += '<div>';
+				
 				output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';
 				output += '<h3 class="movietitle">' + title + '</h3>';
 				output += '<img src="' + thumbnail + '" alt="' + title +'" />';
@@ -59,8 +62,9 @@ function mapVideos(data){
 
 function playVideo(id, title, description){
 	var output = '<iframe src="http://www.youtube.com/embed/' + id + '?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1&amp;" frameborder="0" allowfullscreen></iframe>';
-	output += '<h3>' + title + '</h3>';
-	output += '<p>' + unescape(description) + '</p>';
+	//this code show metadata, but when orientation is changed of phone, this is not desirable
+	//output += '<h3>' + title + '</h3>';
+	//output += '<p>' + unescape(description) + '</p>';
 	$('#myplayer').html(output);
 }
 
