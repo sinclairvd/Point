@@ -22,6 +22,9 @@
 <link href="jquery-mobile/jQuery.css" rel="stylesheet" type="text/css"/>
 <!-- Custom setup -->
 <script src="js/py.js" type="text/javascript"></script>
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+
+
 <!--<script type="text/javascript">
       //Location content
       var lc;
@@ -173,37 +176,26 @@ The question now is: how do you do it? Therefore he gave us useful tips & tricks
 		<h1>V20:20 Random</h1>
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
-	<div id="step1" data-role="content">    	
-        <form method="post" class="v2020randomform" data-ajax="false">
-        <input type="hidden" name="nextStep" value="step2">    	
+	<div data-role="content">    	
+        <form method="post" class="v2020randomform" data-ajax="false"> 
+       <input type="hidden" name="nextStep" value="step2">      	
     	<div data-role="fieldcontain">
 			<label for="teamname">What's your team name?</label>
-			<input type="text" name="teamname" id="teamname" value="" placeholder="Team name" />
+			<input type="text" name="teamname" id="teamname" value="" placeholder="Team name" required />
 		</div>
         <div data-role="fieldcontain">
 			<label for="yourname">Name:</label>
-			<input type="text" name="yourname" id="yourname" value="" placeholder="Your name" />
+			<input type="text" name="yourname" id="yourname" value="" placeholder="Your name" required />
 		</div>
         <div data-role="fieldcontain">
 			<label for="youremail">Email:</label>
-			<input type="text" name="youremail" id="youremail" value="" placeholder="Your email" />
-		</div>
-        <div data-role="fieldcontain"> 
-			<input type="submit" name="submit1" value="Next" data-inline="true" /> 
-		</div>
-     	</form>
+			<input type="text" name="youremail" id="youremail" value="" placeholder="Your email" required />
+		</div> 
+         <div data-role="fieldcontain"> 
+				<input type="submit" name="submit1" value="Next" data-inline="true"  /> 
+			</div>       
+        </form>
    	</div>
-    <div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
-    	<div data-role="navbar">
-        	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
-                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
-                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
-            </ul>			
-        </div><!-- navbar -->
-	</div><!-- footer -->
 </div><!-- page -->
                
                 
@@ -213,7 +205,7 @@ The question now is: how do you do it? Therefore he gave us useful tips & tricks
 		<h1>V20:20 Random</h1>
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
-	<div id="step1" data-role="content">    	    	
+	<div data-role="content">    	    	
         <form method="post" class="v2020randomform" data-ajax="false">
         	<input type="hidden" name="nextStep" value="step3">
         	<div data-role="fieldcontain">
@@ -475,17 +467,6 @@ The question now is: how do you do it? Therefore he gave us useful tips & tricks
 			</div>
      		</form>
    	</div>
-    <div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
-    	<div data-role="navbar">
-        	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
-                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
-                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
-            </ul>			
-        </div><!-- navbar -->
-	</div><!-- footer -->
 </div><!-- page -->
        		    
 <!-- Page: V20:20 Random multipage form step 3-->
@@ -494,7 +475,7 @@ The question now is: how do you do it? Therefore he gave us useful tips & tricks
 		<h1>V20:20 Random</h1>
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
-	<div id="step1" data-role="content">    	    	
+	<div data-role="content">    	    	
         <form method="post" class="v2020randomform" data-ajax="false">
         	<input type="hidden" name="nextStep" value="step4">
         	<label for="add">Create your team (max. 10)</label>              
@@ -502,11 +483,11 @@ The question now is: how do you do it? Therefore he gave us useful tips & tricks
                 <div id="set">           
                 	<div data-role="fieldcontain">
                 		<label for="teammember1">Team member 1</label>
-						<input type="text" name="teammember1" id="teammember1" value="" placeholder="Team member name" />
+						<input type="text" name="teammember1" id="teammember1" value="" placeholder="Team member name" required />
                 	</div>
                		<div data-role="fieldcontain">
                 		<label for="teammember2">Team member 2</label>
-						<input type="text" name="teammember2" id="teammember2" value="" placeholder="Team member name" />
+						<input type="text" name="teammember2" id="teammember2" value="" placeholder="Team member name"  required />
                 	</div>
                 </div>
                 <div data-role="fieldcontain"> 
@@ -514,46 +495,26 @@ The question now is: how do you do it? Therefore he gave us useful tips & tricks
 				</div>
      			</form>
    	</div>
-    <div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
-    	<div data-role="navbar">
-        	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
-                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
-                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
-            </ul>			
-        </div><!-- navbar -->
-	</div><!-- footer -->
 </div><!-- page -->
                 
 <!-- Page: V20:20 Random multipage form step 4-->
 <div data-role="page" id="step4" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
-		<h1>V20:20 Random</h1>
-        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
+		<h1>V20:20 Random</h1>        
 	</div><!-- header -->
-	<div id="step1" data-role="content">    	    	
+	<div data-role="content">    	    	
         <form method="post" class="v2020randomform" data-ajax="false">
-        	<input type="hidden" name="nextStep" value="http://www.theblessing.nl/pointyouthapp/v2020random.php">                 	
-         	<div data-role="fieldcontain"> 
-				<input type="submit" name="submit4" value="Show my Random city!" data-inline="true" /> 
+        	<input type="hidden" name="nextStep" value="http://www.theblessing.nl/pointyouthapp/v2020random.php">            
+            <div id="formResponse"></div>  
+         	<div id="findout" data-role="fieldcontain"> 
+            	OK, let's find out...
+				<input type="submit" name="submit4" value="Show my Random city!" data-theme="b" /> 
 		 	</div>        
         	<div id="city"></div>
         	<div id="map_canvas"></div>
+            <div id="notification"></div>            
      	</form>
    	</div>
-    <div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
-    	<div data-role="navbar">
-        	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
-                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
-                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
-            </ul>			
-        </div><!-- navbar -->
-	</div><!-- footer -->
 </div><!-- page -->
  
  
@@ -604,15 +565,28 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
 
 <!-- Page: Videoplayer -->
 <div data-role="page" id="videoplayer" data-theme="a">
+      <div data-role="header" data-position="fixed" data-id="py_header">
+            <a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="flip" onclick="StopVideo();">MAP band</a>
+            <h1>MAP band</h1>  
+        <!--<a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext" onclick="StopVideo();">Back</a>-->
+    </div><!-- header -->
+      <div data-role="content"> 
+      <div id="myplayer"></div>         
+      </div><!-- content -->  
+</div><!-- page -->
+
+<!-- Page: Videoplayer -->
+<!--
+<div data-role="page" id="videoplayer" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="flip">MAP band</a>
 		<h1>MAP band</h1>  
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>      
-    </div><!-- header -->
-	<div data-role="content"> 
+    </div>--><!-- header -->
+<!--	<div data-role="content"> 
     	<div id="myplayer"></div>   	
-	</div><!-- content -->
-</div><!-- page -->
+	</div>--><!-- content -->
+<!--</div> --><!-- page -->
 
 <!-- Page: Meeting point -->
 <div data-role="page" id="meetingpoint" data-theme="a">

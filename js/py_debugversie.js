@@ -163,7 +163,7 @@ var selectedCountry = "";
 
 function handleV2020RandomForm(e) {
         var next = "";
-		//alert("handle v2020 random form");
+		alert("handle v2020 random form");
 		//trigger form validation with jquery validation plugin
         $(this).validate();	
 		
@@ -195,20 +195,32 @@ function handleV2020RandomForm(e) {
         //if next step isn't a full url, we assume internal link
         //logic will be, if something.something, do a post
         if(next.indexOf(".") == -1) {
-			//alert("nextform is: " + next);
+			alert("nextform is: " + next);
             var nextPage = "#" + next;
             $.mobile.changePage(nextPage);
         } else {
-			//alert('no next form');
-            
+			alert('no next form');
+			//alert('start randomcity');
+			//randomCity('NL');
+			//return false;
+						
+			//debug alert("9");
+			//randomCity(selectedCountry);
+			
+            //$.mobile.changePage(next, {type:"post",data:formData});
+			//console.log("9b");
 			var output = '';
 			for (property in formData) {
   				output += property + '=' + formData[property]+'&';
-			}						
+			}
+			//debug alert(output);
+			//show random city
+			//var stad = randomCity(selectedCountry);
+						
 			
 			if ($('#map_canvas').contents().length == 0) {
 				
-				//alert("map canvas is empty, start randomcity");
+				alert("map canvas is empty, start randomcity");
 				
 				//declare country variable
 				var country = selectedCountry;
@@ -222,20 +234,23 @@ function handleV2020RandomForm(e) {
 				//declare and set city longtitude and latitude to default (JMWZ)
 				var defaultCoordinates = '52.070511,4.28381';
 				var lookupCoordinates = defaultCoordinates;
-			  				
+			  
+				//for each selected value in country
+				//debug var test = 'http://api.geonames.org/searchJSON?&country=' + city +'&maxRows=' + cityCount + '&username=pointyouth';
+				//debug alert('stad ' + test);
 				//get JSON Data with list of city in given country	  		
 				$.getJSON('http://api.geonames.org/searchJSON?&country=' + country +'&maxRows=' + cityCount + '&username=pointyouth',
 					function(data){	
-						//alert("json geonames call started");
+						alert("json geonames call started");
 						//alter cityCount when the returned cityCount is lower then declared
 						if (data.totalResultsCount == 0){
 							//$('#city').html('<h2>Sorry no random city available</h2>');
-							//alert("no random city");	
+							alert("no random city");	
 							return;
 						}
 						else if (data.totalResultsCount < cityCount){
 							cityCount = data.totalResultsCount;	
-							//alert("less cities available");
+							alert("less cities available");
 						}
 								
 							
@@ -254,32 +269,31 @@ function handleV2020RandomForm(e) {
 						//add randomcity to emaildata
 						output += 'city=' + a;
 						
-						//output random city info to page						 
-						//alert("1 city is " + a);		
+						//output random city info to page
+						//check if 
+						alert("1 city is " + a);		
 						//debug output += cityCount;			
 						$('#city').html("<p>Your Vision 20:20 Random city is:</p>" + outputcity);
-						//alert("2 city is " + a);			
-						
+						alert("2 city is " + a);			
 						//update lookupCoordinates with longtitude and latitude of returned city 
 						lookupCoordinates = data.geonames[randomNumber].lat + "," + data.geonames[randomNumber].lng;
-							
+						//alert(lookupCoordinates);
+						//return;
+						alert("3 city is " + a);	
 						//clean out text and submit button
 						$('#findout').hide();
-						//alert("4 city is " + a);	
-						//alert("hide show random city button");
-						
+						alert("4 city is " + a);	
+						alert("hide show random city button");
 						//clean out earlier maps
 						$('#map_canvas').gmap('destroy');
-						//alert("5 city is " + a);	
+						alert("5 city is " + a);	
 						
 						//declare marker icon url
 						var image = 'flag.png';
-						//alert("6 city is " + a);	
-						
+						alert("6 city is " + a);	
 						//declare and set infowindow content
-						var infowindowContent = '<p class="infowindow">Your Vision 20:20 Random city: ' + a +'</p>';
-						//alert("7 city is " + a);	
-						
+						var infowindowContent = '<p class="infowindow">Your Vision 20:20 Random place!<br /><b>' + a +'</b></p>';
+						alert("7 city is " + a);	
 						//draw google maps api							
 						$('#map_canvas').gmap({'zoom':8, 'center':lookupCoordinates}).bind('init', function(ev, map) {
 							$('#map_canvas').gmap('addMarker', {'position': lookupCoordinates, 'bounds': false,'animation':google.maps.Animation.BOUNCE,'icon':image}).click(function() {
@@ -287,11 +301,15 @@ function handleV2020RandomForm(e) {
 							});
 						});
 			
-						//alert("just drawn map canvas");	  
-						//alert("8 city is " + a);
+						alert("just drawn map canvas");	  
+						alert("8 city is " + a);
 						
-						//alert("9 city is " + a);					
+						alert("9 city is " + a);			
 			
+			
+		
+						alert(a);
+					
 						$.ajax({
 								type: "POST",
 								url: "http://www.theblessing.nl/pointyouthapp/v2020random.php",
@@ -302,27 +320,25 @@ function handleV2020RandomForm(e) {
 								crossDomain:true,
 					
 								success: function(msg){							
-									$("#notification").html(msg.message + '<br /><br /><a href="https://twitter.com/intent/tweet?status=Vision+20%3A20+Random+city%3A+' + a + '+Join+Random+city+in+POiNT+Youth+mobile+app" class="TrackSocialLink" target="_blank"><img src="http://www.maasbachradio.com/webplayer/twitter-logo.png" width="20" height="20" border="0">Tweet this song</a><br /><br /><button type="button" data-icon="home" data-theme="a" data-iconpos="left">Home</button>');
-									//alert('json email succes: ' + msg.message);														
+									$("#notification").html(msg.message);
+									alert('json email succes: ' + msg.message);														
 								},
 								error: function(msg){							
 									$("#notification").html(msg.message);
-									//alert('json email error');
+									alert('json email error');
 								}
 						});
 						
-						//alert('after ajax call');
+						alert('after ajax call');
 					
 				});
 			}
-			else{
-				//alert("map canvas is NOT empty");
-			}
+			else{alert("map canvas is NOT empty");}
 		
 			
 	}
     e.preventDefault();
-	//alert("just prevented default post");
+	alert("just prevented default post");
     
 };
 
