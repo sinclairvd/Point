@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* CSS Document */
+/* CSS Document 
 
 * {
     -webkit-user-select: none;
@@ -10,8 +10,48 @@
 }
 
 .ui-content a:not(.ui-btn,.ui-link-inherit) { color: #1FBECA; }
-.ui-content a:not(.ui-btn,.ui-link-inherit):hover { color: #FFFFFF; }
+.ui-content a:not(.ui-btn,.ui-link-inherit):hover { color: #FFFFFF; }*/
 
+#newsitem a{
+	color: rgb(57,199,215);
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+#v2020random div.ui-field-contain.ui-body.ui-br{
+border-style:none;
+	
+}
+#v2020random div.ui-field-contain{
+margin:0;
+padding:0;
+}
+
+#step2 div.ui-field-contain.ui-body.ui-br{
+border-style:none;
+	
+}
+#step2 div.ui-field-contain{
+margin:0;
+padding:0;
+}
+#step3 div.ui-field-contain.ui-body.ui-br{
+border-style:none;
+	
+}
+#step3 div.ui-field-contain{
+margin:0;
+padding:0;
+}
+#step4 div.ui-field-contain.ui-body.ui-br{
+border-style:none;
+	
+}
+#step4 div.ui-field-contain{
+margin:0;
+padding:0;
+}
 #videolist h3{
 	/*margin: 15px 0 5px 0;
 	height:35px;
@@ -72,17 +112,15 @@ th{
 	font-weight:bold;
 	text-shadow:none;
 	text-align:center;
-<<<<<<< HEAD
-	width:60%;
-	font-size:12px;	
 }
 
 .TrackSocialLink{
 	color: rgb(57,199,215);
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
-	font-size: 16pt	
+	font-size: 14pt;	
 }
-=======
+.error{
+	color:red;
+	font-size:10pt;	
 }
->>>>>>> b1425f4e4e8a1bf7ed3b460f3cadc8ba2219999c
