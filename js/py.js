@@ -253,7 +253,7 @@ function handleV2020RandomForm(e) {
 						//alert("5 city is " + a);	
 						
 						//declare marker icon url
-						var image = 'flag.png';
+						var image = 'py.png';
 						//alert("6 city is " + a);	
 						
 						//declare and set infowindow content
@@ -282,7 +282,7 @@ function handleV2020RandomForm(e) {
 								crossDomain:true,
 					
 								success: function(msg){							
-									$("#notification").html(msg.message + '<br /><br /><a href="https://twitter.com/intent/tweet?status=Vision+20%3A20+Random+city%3A+' + a + '+Join+Random+city+in+POiNT+Youth+mobile+app" class="TrackSocialLink" target="_blank"><img src="http://www.maasbachradio.com/webplayer/twitter-logo.png" width="20" height="20" border="0">Tweet this song</a><br /><br /><button type="button" data-icon="home" data-theme="a" data-iconpos="left">Home</button>');
+									$("#notification").html(msg.message + '<br /><br /><a href="https://twitter.com/intent/tweet?status=Vision+20%3A20+Random+city%3A+' + a + '+Join+Random+city+in+POiNT+Youth+mobile+app" class="TrackSocialLink" target="_blank"><img src="http://www.maasbachradio.com/webplayer/twitter-logo.png" width="20" height="20" border="0">Share on Twitter</a>');
 									//alert('json email succes: ' + msg.message);														
 								},
 								error: function(msg){							
