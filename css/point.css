@@ -1,7 +1,8 @@
 @charset "utf-8";
-/* CSS Document 
+/* CSS Document */
 
-* {
+p,ul,ol,li,h1,h2,h3,h4,h5,h6,em,a,strong,[data-role=navbar],#newsitem{
+	
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -10,7 +11,7 @@
 }
 
 .ui-content a:not(.ui-btn,.ui-link-inherit) { color: #1FBECA; }
-.ui-content a:not(.ui-btn,.ui-link-inherit):hover { color: #FFFFFF; }*/
+.ui-content a:not(.ui-btn,.ui-link-inherit):hover { color: #FFFFFF; }
 
 #newsitem a{
 	color: rgb(57,199,215);
