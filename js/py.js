@@ -34,30 +34,32 @@ function newsItem(id){
 	});	// get JSON Data for News Items
 } // newsItem
 
-function mapVideos(data){
+function mapVideos(){
 		//debug console.log(data);
-		
-		var output = '';
-		for (var i=0; i<data.feed.entry.length; i++){
-				var title = data.feed.entry[i].title.$t;
-				var thumbnail = data.feed.entry[i].media$group.media$thumbnail[1].url;
-				var description = data.feed.entry[i].media$group.media$description.$t;
-				var id = data.feed.entry[i].id.$t.substr(38);
-				
-				// edited by Francis 20130415 turn  this code on to use two column design
-				//var blocktype = ((i % 2)===1) ? 'b': 'a';				
-				//output += '<div class="ui-block-' + blocktype + '">';
-				
-				output += '<div>';
-				
-				output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';
-				output += '<h3 class="movietitle">' + title + '</h3>';
-				output += '<img src="' + thumbnail + '" alt="' + title +'" />';
-				output += '</a>';
-				output += '</div>';
-		}
-				
-		$('#videolist').html(output);
+		$.getJSON('http://gdata.youtube.com/feeds/users/makeapointband/uploads?alt=json&max-results=30',
+		function(data){
+			var output = '';
+			for (var i=0; i<data.feed.entry.length; i++){
+					var title = data.feed.entry[i].title.$t;
+					var thumbnail = data.feed.entry[i].media$group.media$thumbnail[1].url;
+					var description = data.feed.entry[i].media$group.media$description.$t;
+					var id = data.feed.entry[i].id.$t.substr(38);
+					
+					// edited by Francis 20130415 turn  this code on to use two column design
+					//var blocktype = ((i % 2)===1) ? 'b': 'a';				
+					//output += '<div class="ui-block-' + blocktype + '">';
+					
+					output += '<div>';
+					
+					output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';
+					output += '<h3 class="movietitle">' + title + '</h3>';
+					output += '<img src="' + thumbnail + '" alt="' + title +'" />';
+					output += '</a>';
+					output += '</div>';
+			}
+					
+			$('#videolist').html(output);
+		});	// get JSON Data for MAP videos	
 }
 
 function playVideo(id, title, description){
@@ -68,28 +70,31 @@ function playVideo(id, title, description){
 	$('#myplayer').html(output);
 }
 
-function studyFeed(data){
+function studyFeed(){
 	//debug console.log(data);
-	var output='<ul data-role="listview" data-filter="true">';	
-	$.each(data.posts,function(key,val){
-
-		var tempDiv = document.createElement("tempDiv");
-		tempDiv.innerHTML = val.excerpt;
-		$("a",tempDiv).remove();
-		var excerpt = tempDiv.innerHTML;
-
-		output += '<li>';
-		output += '<a href="#studypost" onclick="studyItem(' + val.id +')">';
-		output += '<h2 style="text-align:left;">' + val.title + '</h2>';		
-		/* excluded by alissa 10/04/13 output += (val.thumbnail)?
-			'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
-			'<img src="images/makeapoint.png" alt="POiNT! Logo" />'; */
-		output += '<p>' + excerpt + '</p>';
-		output += '</a>';
-		output += '</li>';
-	}); // go through each post
-	output+='</ul>';
-	$('#studyfeed').html(output);
+	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_category_posts&id=17&callback=?',
+		function(data){
+			var output='<ul data-role="listview" data-filter="true">';	
+			$.each(data.posts,function(key,val){
+			
+				var tempDiv = document.createElement("tempDiv");
+				tempDiv.innerHTML = val.excerpt;
+				$("a",tempDiv).remove();
+				var excerpt = tempDiv.innerHTML;
+		
+				output += '<li>';
+				output += '<a href="#studypost" onclick="studyItem(' + val.id +')">';
+				output += '<h2 style="text-align:left;">' + val.title + '</h2>';		
+				/* excluded by alissa 10/04/13 output += (val.thumbnail)?
+					'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
+					'<img src="images/makeapoint.png" alt="POiNT! Logo" />'; */
+				output += '<p>' + excerpt + '</p>';
+				output += '</a>';
+				output += '</li>';
+			}); // go through each post
+			output+='</ul>';
+			$('#studyfeed').html(output);
+		});	// get JSON Data for Study Item
 } // list all the posts
 
 function studyItem(id){
@@ -102,28 +107,31 @@ function studyItem(id){
 	});	// get JSON Data for Study Item
 } // studyItem
 
-function studyFeed_eng(data){
-	console.log(data);
-	var output='<ul data-role="listview" data-filter="true">';	
-	$.each(data.posts,function(key,val){
-
-		var tempDiv = document.createElement("tempDiv");
-		tempDiv.innerHTML = val.excerpt;
-		$("a",tempDiv).remove();
-		var excerpt = tempDiv.innerHTML;
-
-		output += '<li>';
-		output += '<a href="#studypost_eng" onclick="studyItem_eng(' + val.id +')">';
-		output += '<h2 style="text-align:left;">' + val.title + '</h2>';		
-		/* excluded by alissa 10/04/13 output += (val.thumbnail)?
-			'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
-			'<img src="images/makeapoint.png" alt="POiNT! Logo" />'; */
-		output += '<p>' + excerpt + '</p>';
-		output += '</a>';
-		output += '</li>';
-	}); // go through each post
-	output+='</ul>';
-	$('#studyfeed_eng').html(output);
+function studyFeed_eng(){
+	//debug console.log(data);
+	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_category_posts&id=19&callback=?',
+		function(data){
+			var output='<ul data-role="listview" data-filter="true">';	
+			$.each(data.posts,function(key,val){
+		
+				var tempDiv = document.createElement("tempDiv");
+				tempDiv.innerHTML = val.excerpt;
+				$("a",tempDiv).remove();
+				var excerpt = tempDiv.innerHTML;
+		
+				output += '<li>';
+				output += '<a href="#studypost_eng" onclick="studyItem_eng(' + val.id +')">';
+				output += '<h2 style="text-align:left;">' + val.title + '</h2>';		
+				/* excluded by alissa 10/04/13 output += (val.thumbnail)?
+					'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
+					'<img src="images/makeapoint.png" alt="POiNT! Logo" />'; */
+				output += '<p>' + excerpt + '</p>';
+				output += '</a>';
+				output += '</li>';
+			}); // go through each post
+			output+='</ul>';
+			$('#studyfeed_eng').html(output);
+		});	// get JSON Data for Study Item
 } // list all the posts
 
 function studyItem_eng(id){
