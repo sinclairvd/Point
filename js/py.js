@@ -15,7 +15,7 @@ function newsFeed(data){
 		output += '<h2>' + val.title + '</h2>';		
 		output += (val.thumbnail)?
 			'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
-			'<img src="images/makeapoint.png" alt="POiNT! Logo" />';
+			'<img src="images/default/makeapoint.png" alt="POiNT! Logo" />';
 		output += '<p>' + excerpt + '</p>';
 		output += '</a>';
 		output += '</li>';
@@ -34,14 +34,14 @@ function newsItem(id){
 	});	// get JSON Data for News Items
 } // newsItem
 
-function mapVideos(){
-		//debug console.log(data);
+function mapVideos(){		
 		$.getJSON('http://gdata.youtube.com/feeds/users/makeapointband/uploads?alt=json&max-results=30',
 		function(data){
+			console.log(data);
 			var output = '';
 			for (var i=0; i<data.feed.entry.length; i++){
 					var title = data.feed.entry[i].title.$t;
-					var thumbnail = data.feed.entry[i].media$group.media$thumbnail[1].url;
+					var thumbnail = data.feed.entry[i].media$group.media$thumbnail[0].url;
 					var description = data.feed.entry[i].media$group.media$description.$t;
 					var id = data.feed.entry[i].id.$t.substr(38);
 					
@@ -52,6 +52,9 @@ function mapVideos(){
 					output += '<div>';
 					
 					output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';
+					//by SJS on 20130418 tried to use without iframe, but this does not give you option to go back to app
+					// and will user get stuck in webview
+					//output += "<a href='http://www.youtube.com/embed/" + id +"?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1' data-transition='fade'";
 					output += '<h3 class="movietitle">' + title + '</h3>';
 					output += '<img src="' + thumbnail + '" alt="' + title +'" />';
 					output += '</a>';
@@ -63,17 +66,17 @@ function mapVideos(){
 }
 
 function playVideo(id, title, description){
-	var output = '<iframe src="http://www.youtube.com/embed/' + id + '?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1&amp;" frameborder="0" allowfullscreen></iframe>';
+	var output = '<iframe src="http://www.youtube.com/embed/' + id + '?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1&amp;" frameborder="0" target="_self" allowfullscreen></iframe>';	
 	//this code show metadata, but when orientation is changed of phone, this is not desirable
 	//output += '<h3>' + title + '</h3>';
 	//output += '<p>' + unescape(description) + '</p>';
 	$('#myplayer').html(output);
 }
 
-function studyFeed(){
-	//debug console.log(data);
+function studyFeed(){	
 	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_category_posts&id=17&callback=?',
 		function(data){
+			//debug console.log(data);
 			var output='<ul data-role="listview" data-filter="true">';	
 			$.each(data.posts,function(key,val){
 			
@@ -107,10 +110,10 @@ function studyItem(id){
 	});	// get JSON Data for Study Item
 } // studyItem
 
-function studyFeed_eng(){
-	//debug console.log(data);
+function studyFeed_eng(){	
 	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_category_posts&id=19&callback=?',
 		function(data){
+			//debug console.log(data);
 			var output='<ul data-role="listview" data-filter="true">';	
 			$.each(data.posts,function(key,val){
 		
@@ -261,7 +264,7 @@ function handleV2020RandomForm(e) {
 						//alert("5 city is " + a);	
 						
 						//declare marker icon url
-						var image = 'py.png';
+						var image = 'images/action/v2020flag.png';
 						//alert("6 city is " + a);	
 						
 						//declare and set infowindow content

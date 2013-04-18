@@ -127,7 +127,7 @@
 .ui-body-a .ui-link:active{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(57,199,215);
 	line-height:120%;
 	text-align:left;
@@ -137,7 +137,7 @@
 .ui-body-a .ui-link:visited{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(57,199,215);
 	line-height:120%;
 	text-align:left;
@@ -359,7 +359,7 @@
 .ui-body-b .ui-link{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(68,68,68);
 	line-height:120%;
 	text-align:left;
@@ -369,7 +369,7 @@
 .ui-body-b .ui-link:hover{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(68,68,68);
 	line-height:120%;
 	text-align:left;
@@ -379,7 +379,7 @@
 .ui-body-b .ui-link:active{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(51,51,51);
 	line-height:120%;
 	text-align:left;
@@ -389,7 +389,7 @@
 .ui-body-b .ui-link:visited{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(68,68,68);
 	line-height:120%;
 	text-align:left;
@@ -611,7 +611,7 @@
 .ui-body-c .ui-link{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(36,137,206);
 	line-height:120%;
 	text-align:left;
@@ -621,7 +621,7 @@
 .ui-body-c .ui-link:hover{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(36,136,205);
 	line-height:120%;
 	text-align:left;
@@ -631,7 +631,7 @@
 .ui-body-c .ui-link:active{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(36,136,205);
 	line-height:120%;
 	text-align:left;
@@ -641,7 +641,7 @@
 .ui-body-c .ui-link:visited{
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16pt;
+	font-size:12pt;
 	color:rgb(37,138,205);
 	line-height:120%;
 	text-align:left;

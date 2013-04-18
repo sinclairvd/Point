@@ -66,7 +66,10 @@ padding:0;
 
 #videolist a {
 	text-decoration:none;
-	/*color:#777;	*/
+	color: rgb(57,199,215);
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12pt;
 }
 
 #videoplayer .ui-content {
