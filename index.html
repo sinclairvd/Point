@@ -481,7 +481,7 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
 <!-- Page: Videoplayer -->
 <div data-role="page" id="videoplayer" data-theme="a">
       <div data-role="header" data-position="fixed" data-id="py_header">
-            <a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="flip" onclick="StopVideo();">MAP band</a>
+            <a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="flip" target="_self">MAP band</a>
             <h1>MAP band</h1>         
     </div><!-- header -->
       <div data-role="content"> 
@@ -721,8 +721,8 @@ point@theblessingzwolle.com</a></p>
     });
 	
 
-$("#v2020random").live("pageinit", function() {
-	$("form.v2020randomform").live("submit", handleV2020RandomForm);    
+$("#v2020random").bind("pageinit", function() {
+	$("form.v2020randomform").bind("submit", handleV2020RandomForm);    
 });
 
 

@@ -27,9 +27,24 @@ function newsFeed(data){
 function newsItem(id){
 	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_post&post_id=' + id + '&callback=?',
 		function(data){
+			//console.log(data);
 			var output='';
 			output += '<h2>' + data.post.title + '</h2>';
+			
+			//var temp = data.post.content;
+			//$('<div>').html(temp).find('a').replaceWith("test");
+			
+			
+			//var temp = document.createElement("temp");
+			//temp.innerHTML = data.post.content;			
+			//temp.get.replaceWith("a target='_self'");
+			//$("a",temp).change(function(){
+			//	console.log("debug " + this.text());	
+			//});
+			//output += temp.innerHTML;
+			
 			output += data.post.content;
+			
 			$('#newsitem').html(output);
 	});	// get JSON Data for News Items
 } // newsItem
@@ -37,7 +52,7 @@ function newsItem(id){
 function mapVideos(){		
 		$.getJSON('http://gdata.youtube.com/feeds/users/makeapointband/uploads?alt=json&max-results=30',
 		function(data){
-			console.log(data);
+			//console.log(data);
 			var output = '';
 			for (var i=0; i<data.feed.entry.length; i++){
 					var title = data.feed.entry[i].title.$t;
@@ -66,7 +81,7 @@ function mapVideos(){
 }
 
 function playVideo(id, title, description){
-	var output = '<iframe src="http://www.youtube.com/embed/' + id + '?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1&amp;" frameborder="0" target="_self" allowfullscreen></iframe>';	
+	var output = '<iframe src="http://www.youtube.com/embed/' + id + '?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1&amp;" frameborder="0" allowfullscreen></iframe>';	
 	//this code show metadata, but when orientation is changed of phone, this is not desirable
 	//output += '<h3>' + title + '</h3>';
 	//output += '<p>' + unescape(description) + '</p>';
@@ -322,3 +337,7 @@ function handleV2020RandomForm(e) {
 function StopVideo(){
 	document.getElementById("myplayer").innerHTML =  '';
 }
+
+$(document).bind('pagebeforehide', function(){
+    player.pauseVideo();
+});
