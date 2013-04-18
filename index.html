@@ -481,11 +481,11 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
 <!-- Page: Videoplayer -->
 <div data-role="page" id="videoplayer" data-theme="a">
       <div data-role="header" data-position="fixed" data-id="py_header">
-            <a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="flip" target="_self">MAP band</a>
+            <a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="flip">MAP band</a>
             <h1>MAP band</h1>         
     </div><!-- header -->
       <div data-role="content"> 
-      <div id="myplayer"></div>         
+      <div id="myplayer"><iframe src="" id="player" name="" frameborder="0" allowfullscreen></iframe></div>         
       </div><!-- content -->  
 </div><!-- page -->
 
@@ -729,6 +729,10 @@ $("#v2020random").bind("pageinit", function() {
 $("#studyFeed").click(studyFeed());
 $("#studyFeedEng").click(studyFeed_eng());
 $("#mapbandnav").click(mapVideos());
+
+$("#videoplayer").bind('pagebeforehide', function(){
+	$("#player").attr("src","");	
+});
 
 </script>
 </body>

@@ -30,8 +30,9 @@ function newsItem(id){
 			//console.log(data);
 			var output='';
 			output += '<h2>' + data.post.title + '</h2>';
-			
-			//var temp = data.post.content;
+		
+			var temp = data.post.content;
+			console.log("test " + temp);
 			//$('<div>').html(temp).find('a').replaceWith("test");
 			
 			
@@ -80,12 +81,12 @@ function mapVideos(){
 		});	// get JSON Data for MAP videos	
 }
 
-function playVideo(id, title, description){
-	var output = '<iframe src="http://www.youtube.com/embed/' + id + '?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1&amp;" frameborder="0" allowfullscreen></iframe>';	
+function playVideo(id, title, description){	
 	//this code show metadata, but when orientation is changed of phone, this is not desirable
 	//output += '<h3>' + title + '</h3>';
 	//output += '<p>' + unescape(description) + '</p>';
-	$('#myplayer').html(output);
+	var src = "http://www.youtube.com/embed/" + id + "?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1&amp;";	
+	$('#player').attr("src",src);
 }
 
 function studyFeed(){	
@@ -337,7 +338,3 @@ function handleV2020RandomForm(e) {
 function StopVideo(){
 	document.getElementById("myplayer").innerHTML =  '';
 }
-
-$(document).bind('pagebeforehide', function(){
-    player.pauseVideo();
-});
