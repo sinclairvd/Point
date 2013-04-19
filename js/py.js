@@ -2,7 +2,7 @@
 
 function newsFeed(data){
 	//debug console.log(data);
-	var output='<ul data-role="listview" data-filter="true">';	
+	var output='<ul data-role="listview" data-filter="true">';
 	$.each(data.posts,function(key,val){
 
 		var tempDiv = document.createElement("tempDiv");
@@ -12,7 +12,7 @@ function newsFeed(data){
 
 		output += '<li>';
 		output += '<a href="#news" onclick="newsItem(' + val.id +')">';
-		output += '<h2>' + val.title + '</h2>';		
+		output += '<h2>' + val.title + '</h2>';
 		output += (val.thumbnail)?
 			'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
 			'<img src="images/makeapoint.png" alt="POiNT! Logo" />';
@@ -30,22 +30,23 @@ function newsItem(id){
 			var output='';
 			output += '<h2>' + data.post.title + '</h2>';
 			output += data.post.content;
-			$('#newsitem').html(output);
+			$('#newsitem').html(output)
+        	$('#newsitem a').attr("target", "_blank");
 	});	// get JSON Data for News Items
 } // newsItem
 
 function mapVideos(data){
 		//debug console.log(data);
-		
+
 		var output = '';
 		for (var i=0; i<data.feed.entry.length; i++){
 				var title = data.feed.entry[i].title.$t;
 				var thumbnail = data.feed.entry[i].media$group.media$thumbnail[1].url;
 				var description = data.feed.entry[i].media$group.media$description.$t;
 				var id = data.feed.entry[i].id.$t.substr(38);
-				
+
 				var blocktype = ((i % 2)===1) ? 'b': 'a';
-				
+
 				output += '<div class="ui-block-' + blocktype + '">';
 				output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )"';
 				output += '<h3 class="movietitle">' + title + '</h3>';
@@ -53,7 +54,7 @@ function mapVideos(data){
 				output += '</a>';
 				output += '</div>';
 		}
-				
+
 		$('#videolist').html(output);
 }
 
@@ -66,7 +67,7 @@ function playVideo(id, title, description){
 
 function studyFeed(data){
 	console.log(data);
-	var output='<ul data-role="listview" data-filter="true">';	
+	var output='<ul data-role="listview" data-filter="true">';
 	$.each(data.posts,function(key,val){
 
 		var tempDiv = document.createElement("tempDiv");
@@ -76,7 +77,7 @@ function studyFeed(data){
 
 		output += '<li>';
 		output += '<a href="#studypost" onclick="studyItem(' + val.id +')">';
-		output += '<h2 style="text-align:left;">' + val.title + '</h2>';		
+		output += '<h2 style="text-align:left;">' + val.title + '</h2>';
 		/* excluded by alissa 10/04/13 output += (val.thumbnail)?
 			'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
 			'<img src="images/makeapoint.png" alt="POiNT! Logo" />'; */
@@ -104,14 +105,14 @@ function onDeviceReady(){
 }
 
 // get current position and show map
-function getPosition(){ 
+function getPosition(){
     var geoOptions = { enableHighAccuracy: true, timeout: 10000 };
     navigator.geolocation.getCurrentPosition(function(position){ // geoSuccess
-	
+
         // we have the position
 		var geolocation = $('#geolocation');
 		geolocation.html('<table></table>');
- 
+
 		var table = geolocation.find('table');
 		if(position.coords.latitude)
     		table.append('<tr><th>Latitude</th><td>' + position.coords.latitude + '</td></tr>');
@@ -129,9 +130,9 @@ function getPosition(){
 		    table.append('<tr><th>Speed</th><td>' + position.coords.speed + '</td></tr>');
 		if(position.coords.timestamp)
 		    table.append('<tr><th>Timestamp</th><td>' + new Date(position.timestamp) + '</td></tr>');
-			
+
 		/* show position on map */
-		var map_canvas = $('#map_canvas'); 
+		var map_canvas = $('#map_canvas');
 		map_canvas.gmap(
 		    {'center' : position.coords.latitude + ',' + position.coords.longitude,
 		    'zoom' : 12,
@@ -142,9 +143,9 @@ function getPosition(){
 	        marker.click(function(){
 	            self.openInfoWindow({ 'content' : 'This is your current location' }, this);
     	    });
-	    }   
-});     
-	
+	    }
+});
+
 	}, function(error){ // geoError
         navigator.notification.alert('error: ' + error.message + '\n' + 'code: ' + error.code);
     }, geoOptions);
