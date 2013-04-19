@@ -11,6 +11,34 @@
 <link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
 <!-- Phonegap setup -->
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+    // Wait for PhoneGap to load
+    // 
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {
+        checkConnection();
+    }
+
+    function checkConnection() {
+        var networkState = navigator.network.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        alert('Connection type: ' + states[networkState]);
+    }
+
+	</script>
 <!-- Google maps setup -->
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyB35e9joUD8IHWG6Uo9jxQoxgDEGT3o0L8&sensor=false" type="text/javascript"></script>
 <!-- jQuery ui map setup -->
@@ -30,7 +58,7 @@
 		<h1>POiNT! Youth</h1>        
         <div data-role="navbar">
         	<ul>
-            	<li><a href="#home" data-role="button" data-transition="flip">NEWS FEED</a></li>
+            	<li><a href="#" data-role="button" data-transition="flip">NEWS FEED</a></li>
             	<li><a href="#contact" data-role="button" data-transition="flip">CONTACT</a></li>
             </ul>
         </div><!-- navbar -->
@@ -60,6 +88,40 @@
     	<div id="newsitem"></div>   	
 	</div><!-- content -->
 </div><!-- page -->                  	
+
+<!-- Page: Contact -->
+<div data-role="page" id="contact" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>Contact</h1>
+        <div data-role="navbar">
+        	<ul>
+            	<li><a href="#home" data-role="button" data-transition="flip">NEWS FEED</a></li>
+            	<li><a href="#" data-role="button" data-transition="flip">CONTACT</a></li>
+            </ul>
+        </div><!-- navbar -->
+	</div><!-- header -->
+	<div data-role="content">	
+    	<ul data-role="listview">
+			<li data-icon="false"><a href="http://www.pointyouth.com" target="_blank">Website</a></li>
+        	<li data-icon="false"><a href="http://www.facebook.com/pages/POiNTYouth/111803732303843" target="_blank">Facebook</a></li>
+        	<li data-icon="false"><a href="http://www.youtube.com/makeapointband" target="_blank">YouTube channel</a></li>
+        	<li data-icon="false"><a href="mailto:info@pointyouth.com">Write us</a></li>
+        	<li data-icon="false"><a href="mailto:info@gpnetwork.com">Prayer Request</a></li>  
+        	<li data-icon="arrow-r"><a href="#maasbachradio" data-icon="arrow-r" data-transition="slide">Listen to Maasbach Radio</a></li>
+   		</ul>                 
+	</div><!-- content -->
+	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
+    	<div data-role="navbar">
+        	<ul>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
+                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
+            </ul>			
+        </div><!-- navbar -->
+	</div><!-- footer -->
+</div><!-- page -->	
 
 <!-- Page: Action -->
 <div data-role="page" id="action" data-theme="a">
@@ -558,35 +620,6 @@ point@theblessingzwolle.com</a></p>
 	</div><!-- footer -->
 </div><!-- page -->
 
-<!-- Page: Contact -->
-<div data-role="page" id="contact" data-theme="a">
-	<div data-role="header" data-position="fixed" data-id="py_header">
-		<h1>Contact</h1>
-        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
-	</div><!-- header -->
-	<div data-role="content">	
-    	<ul data-role="listview">
-			<li data-icon="false"><a href="http://www.pointyouth.com" target="_blank">Website</a></li>
-        	<li data-icon="false"><a href="http://www.facebook.com/pages/POiNTYouth/111803732303843" target="_blank">Facebook</a></li>
-        	<li data-icon="false"><a href="http://www.youtube.com/makeapointband" target="_blank">YouTube channel</a></li>
-        	<li data-icon="false"><a href="mailto:info@pointyouth.com">Write us</a></li>
-        	<li data-icon="false"><a href="mailto:info@gpnetwork.com">Prayer Request</a></li>  
-        	<li data-icon="arrow-r"><a href="#maasbachradio" data-icon="arrow-r" data-transition="slide">Listen to Maasbach Radio</a></li>
-   		</ul>                 
-	</div><!-- content -->
-	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
-    	<div data-role="navbar">
-        	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
-                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
-                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
-            </ul>			
-        </div><!-- navbar -->
-	</div><!-- footer -->
-</div><!-- page -->	
-
 <!-- Page: Study -->
 <div data-role="page" id="study" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
@@ -707,7 +740,7 @@ point@theblessingzwolle.com</a></p>
 	</div><!-- content -->	
 </div><!-- page -->	
 
-<script src="http://www.theblessing.nl/PWYM/?json=get_recent_posts&callback=newsFeed&count=7&page=1" type="text/javascript"></script>
+<script src="http://www.theblessing.nl/PWYM/?json=get_category_posts&id=20&callback=newsFeed&count=7&page=1" type="text/javascript"></script>
 
 <script type="text/javascript">	
     var nextId = 2;
