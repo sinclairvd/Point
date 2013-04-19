@@ -4,90 +4,60 @@
 <title>POiNT! Youth</title>
 <!-- jQuery Mobile setup -->
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+<meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
 <script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
 <link href="jquery-mobile/jquery.mobile.theme-1.0.css" rel="stylesheet" type="text/css"/>
 <link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
 <!-- Phonegap setup -->
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+    // Call onDeviceReady when PhoneGap is loaded.
+    //
+    // At this point, the document has loaded but phonegap-1.3.0.js has not.
+    // When PhoneGap is loaded and talking with the native device,
+    // it will call the event `deviceready`.
+    //
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {
+        document.addEventListener("offline", onOffline, false);
+    }
+
+    // Handle the offline event
+    //
+    function onOffline() {
+		$.mobile.changePage('#dialog', 'pop', true, true);
+    }
+</script>
 <!-- Google maps setup -->
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyB35e9joUD8IHWG6Uo9jxQoxgDEGT3o0L8&sensor=true" type="text/javascript"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyB35e9joUD8IHWG6Uo9jxQoxgDEGT3o0L8&sensor=false" type="text/javascript"></script>
 <!-- jQuery ui map setup -->
 <script type="text/javascript" src="js/jquery.ui.map.min.js"></script>
-<script type="text/javascript" src="js/jquery.ui.map.overlays.min.js"></script>
-<script type="text/javascript" src="js/jquery.ui.map.services.min.js"></script>
-<script type="text/javascript" src="js/jquery.ui.map.extensions.js"></script>
 <!-- Theme roller setup -->
 <link href="jquery-mobile/jQuery.css" rel="stylesheet" type="text/css"/>
 <!-- Custom setup -->
 <script src="js/py.js" type="text/javascript"></script>
-<script type="text/javascript">
-      //Location content
-      var lc;
-      //PhoneGap Ready variable
-      var pgr = false;
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 
-      function onBodyLoad() {
-        //During testing, Let me know we got this far
-        alert("onBodyLoad");
-        //Add the PhoneGap deviceready event listener
-        document.addEventListener("deviceready", onDeviceReady, false);
-      }
-
-      function onDeviceReady() {
-        //During testing, Let me know PhoneGap actually
-        // initialized
-        alert("onDeviceReady");
-        //Get a handle we'll use to adjust the accelerometer
-        //content
-        lc = document.getElementById("locationInfo");
-        //Set the variable that lets other parts of the program
-        //know that PhoneGap is initialized
-        pgr = true;
-      }
-
-      function getLocation() {
-        alert("getLocation");
-        if(pgr == true) {
-          var locOptions = {
-            timeout : 50000,
-            enableHighAccuracy : true
-          };
-          //get the current location
-          navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, locOptions);
-          //Clear the current location while we wait for a reading
-          lc.innerHTML = "Reading location...";
-
-        } else {
-          alert("Please wait,\nPhoneGap is not ready.");
-        }
-      }
-
-      function onLocationSuccess(loc) {
-        alert("onLocationSuccess");
-        //We received something from the API, so first get the
-        // timestamp in a date object so we can work with it
-        var d = new Date(loc.timestamp);
-        //Then replace the page's content with the current
-        // location retrieved from the API
-        lc.innerHTML = '<b>Current Location</b><hr /><b>Latitude</b>: ' + loc.coords.latitude + '<br /><b>Longitude</b>: ' + loc.coords.longitude + '<br /><b>Altitude</b>: ' + loc.coords.altitude + '<br /><b>Accuracy</b>: ' + loc.coords.accuracy + '<br /><b>Altitude Accuracy</b>: ' + loc.coords.altitudeAccuracy + '<br /><b>Heading</b>: ' + loc.coords.heading + '<br /><b>Speed</b>: ' + loc.coords.speed + '<br /><b>Timestamp</b>: ' + d.toLocaleString();
-      }
-
-      function onLocationError(e) {
-        alert("Geolocation error: #" + e.code + "\n" + e.message);
-      }
-    </script>
 <link href="css/point.css" rel="stylesheet" type="text/css"/>
 </head> 
 <body> 
+<!-- Dialog: No Internet Connection -->
+<div id="dialog" data-role="dialog">No Internet Connection</div>
+<!-- Dialog -->
 <!-- Page: Home -->
 <div data-role="page" id="home" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<h1>POiNT! Youth</h1>        
         <div data-role="navbar">
         	<ul>
-            	<li><a href="#home" data-role="button" data-transition="flip">NEWS FEED</a></li>
+            	<li><a href="#" data-role="button" data-transition="flip">NEWS FEED</a></li>
             	<li><a href="#contact" data-role="button" data-transition="flip">CONTACT</a></li>
             </ul>
         </div><!-- navbar -->
@@ -99,7 +69,7 @@
         	<ul>
                 <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
                 <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
@@ -110,13 +80,47 @@
 <!-- Page: News -->
 <div data-role="page" id="news" data-theme="a" data-add-back-btn="true" data-back-btn-text="Back">
 	<div data-role="header" data-position="fixed" data-id="py_header">
-		<h1>News Item</h1>  
+		<h1>News Feed</h1>  
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>      
     </div><!-- header -->
 	<div data-role="content"> 
     	<div id="newsitem"></div>   	
 	</div><!-- content -->
 </div><!-- page -->                  	
+
+<!-- Page: Contact -->
+<div data-role="page" id="contact" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>Contact</h1>
+        <div data-role="navbar">
+        	<ul>
+            	<li><a href="#home" data-role="button" data-transition="flip">NEWS FEED</a></li>
+            	<li><a href="#" data-role="button" data-transition="flip">CONTACT</a></li>
+            </ul>
+        </div><!-- navbar -->
+	</div><!-- header -->
+	<div data-role="content">	
+    	<ul data-role="listview">
+			<li data-icon="false"><a href="http://www.pointyouth.com" target="_blank">Website</a></li>
+        	<li data-icon="false"><a href="http://www.facebook.com/pages/POiNTYouth/111803732303843" target="_blank">Facebook</a></li>
+        	<li data-icon="false"><a href="http://www.youtube.com/makeapointband" target="_blank">YouTube channel</a></li>
+        	<li data-icon="false"><a href="mailto:info@pointyouth.com">Write us</a></li>
+        	<li data-icon="false"><a href="mailto:info@gpnetwork.com">Prayer Request</a></li>  
+        	<li data-icon="arrow-r"><a href="#maasbachradio" data-icon="arrow-r" data-transition="slide">Listen to Maasbach Radio</a></li>
+   		</ul>                 
+	</div><!-- content -->
+	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
+    	<div data-role="navbar">
+        	<ul>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
+                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
+            </ul>			
+        </div><!-- navbar -->
+	</div><!-- footer -->
+</div><!-- page -->	
 
 <!-- Page: Action -->
 <div data-role="page" id="action" data-theme="a">
@@ -125,40 +129,34 @@
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
 	<div data-role="content">	
-		 <h1>Visie 20:20 Random</h1>
+		 <h3><font color='1fbeca'>Vision 20:20 Random</font></h3>
     	<p>
-    		<em>Visie 20:20 Random</em> is een onderdeel van <em>Visie 20:20</em>, speciaal voor jongeren. ‘Random’ betekent: willekeurig. Je bepaalt namelijk niet zelf waar je naartoe gaat… Met een landkaart, een Random Pakket en je eigen Random Team ga je uit naar een willekeurig gekozen plaats. Hier deel je flyers uit en vertel je de mensen over Jezus. Op een leuke plek plant je de vlag en kan je samen met je Random Team voor die plaats bidden. Aan het einde maak je een leuke foto/video bij de vlag en stuur je deze naar <a href="mailto:events@maasbach.com?subject=POiNT!APP Random">events@maasbach.com</a>
+    		<em>Vision 20:20 Random</em> is part of Vision 20:20, especially for youth. It is called Random, because you do not decide yourself where you are going… With a map of your country or region, a Random kit and your own Random team, you will go to a randomly chosen city or town. Here you will hand out Christian tracts and tell people about Jesus. Plant the flag on a nice spot and pray for this city or town together with your Random team. At the end, take a nice picture or make a video with the flag and send it to <a href="mailto:info@pointyouth.com?subject=POiNT!APP Random">info@pointyouth.com</a>
     	</p>
-        <p><a href="#v2020random" data-role="button">Play</a></p>
-        <h1>Visie 20:20 365</h1>
-   		<p> John TL Maasbach heeft tijdens tijdens een POiNT! Event een speciale boodschap gehouden over Evangeliseren. Een praktische boodschap met vier punten die we allemaal kunnen doen:</strong><br><br>
-1. Maak een beslissing<br>
-2. Zet een doel<br>
-3. Maak een ‘To-Do’ list<br>
-4. Doe het!<br><br>
-
-Maar nu is de vraag, hoe doe je het? Daarom kregen we handige tips & tricks die eenvoudig te realiseren zijn!<br>
-* <strong>Neem iemand mee: </strong>bijvoorbeeld naar de JMWZ musicals, <em>The Blessing Churches</em>, POiNT! Nights, MAP Concert, Hoogtijdagen etc.<br>
-* <strong>Zondaarsgebed: </strong>bid in 2013 het zondaarsgebed met iemand. <br>
-* <strong>Vriend Van Maasbach: </strong>Word een <em>Vriend Van Maasbach</em> en steun de uitzendingen op SBS6 waar David Maasbach wekelijks de boodschap verteld.<br>
-* <strong>Koop een opbouwende DVD en kijk het samen: </strong>op <a href="http://www.bijbelhuis.nl">Bijbelhuis.nl</a> kun je inspirerende dvd’s bestellen. <br>
-* <strong><em>Visie 20:20 365!</em>: </strong>Dit is een geheel nieuwe manier van evangeliseren. Bestel het pakket van Visie 20:20 365! en ontvang een tas met 365 traktaten. Geef iedere dag 1 persoon een traktaat onderweg, op je werk, op school of waar dan ook. Dit is de strategie voor effectieve evangelisatie buiten de kerk. Omdat de ongelovigen niet naar de kerk komen, moet jij naar de ongelovigen gaan! Dit noemen we evangelisatie en we dagen jou uit om ook een visser van mensen te worden! </p> 
+        <p><a href="#v2020random" data-role="button">Join Random Team</a></p>
+        <h3><font color='1fbeca'>Vision 20:20 365!</font></h3>
+   		<p> At a POiNT! Event John T.L. Maasbach held a practical message about evangelism, with four points we can all do:<br>
+			<ol>
+				<li>Make a decision</li>
+				<li>Set a goal</li>
+				<li>Make a ‘To-Do’ list</li>
+				<li>Do it!</li></ol>
+The question now is: how do you do it? Therefore he gave us useful tips & tricks that are easy to achieve!
+<ul>
+<li><strong>Take someone with you:</strong> for example to a youth meeting, concert, Christian celebration, etc.</li>
+<li><strong>Sinner’s prayer:</strong> pray in 2013 the sinner’s prayer with someone.</li>
+<li><strong>Buy a Christian DVD and watch it together:</strong> there are lots of inspiring DVDs available.</li>
+<li><strong>Vision 20:20 365!:</strong> This is a complete new way of evangelism. The <em>Vision 20:20 365!</em> kit includes a bag with 365 Christian brochures. Give every day one brochure to one person on the go, at work, at school, or anywhere. This is the strategy for effective evangelism outside the church. Because non-believers will not come to church, you must go to them! We call this evangelism and we challenge you to also become a fisher of men!</li></ul>
+ </p> 
         <p><a href="http://www.bijbelhuis.nl/Shop/Index.php?page=getinfo&id=Visie%202020%20365" data-role="button" target="_blank">Order 365 Package</a></p>
-    	<!--<p>
-      	Click the button to determine the current location.
-    	</p>
-    	<input type="button" value="Refresh Location" onclick="getLocation();">
-    	<hr />
-    	<p id="locationInfo">
-      	Nothing to see here (yet), click the button.
-    	</p>-->
+    	
 	</div><!-- content -->
 	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
     	<div data-role="navbar">
         	<ul>
                 <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
                 <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
@@ -166,341 +164,352 @@ Maar nu is de vraag, hoe doe je het? Daarom kregen we handige tips & tricks die 
 	</div><!-- footer -->
 </div><!-- page -->
 
-<!-- Page: V20:20 Random -->
+<!-- Page: V20:20 Random multipage form step 1-->
 <div data-role="page" id="v2020random" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
-		<h1>Vision 20:20 Random</h1>
+		<h1>V20:20 Random</h1>
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
-	<div id="formcontent" data-role="content">
-    	<form action="http://www.theblessing.nl/pointyouthapp/v2020random.php" method="post">
-    	<div>    	
-            	<div data-role="fieldcontain">
-					<label for="teamname">What's your team name?</label>
-					<input type="text" name="teamname" id="teamname" value="" placeholder="Teamname" />
+	<div data-role="content">    	
+        <form method="post" class="v2020randomform" data-ajax="false"> 
+       <input type="hidden" name="nextStep" value="step2">      	
+    	<div data-role="fieldcontain">
+			<label for="teamname">What's your team name?</label>
+			<input type="text" name="teamname" id="teamname" value="" placeholder="Team name" required />
+		</div>
+        <div data-role="fieldcontain">
+			<label for="yourname">Name:</label>
+			<input type="text" name="yourname" id="yourname" value="" placeholder="Your name" required />
+		</div>
+        <div data-role="fieldcontain">
+			<label for="youremail">Email:</label>
+			<input type="text" name="youremail" id="youremail" value="" placeholder="Your email" required />
+		</div> 
+         <div data-role="fieldcontain"> 
+				<input type="submit" name="submit1" value="Next" data-inline="true"  /> 
+			</div>       
+        </form>
+   	</div>
+</div><!-- page -->
+               
+                
+<!-- Page: V20:20 Random multipage form step 2-->
+<div data-role="page" id="step2" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>V20:20 Random</h1>
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
+	</div><!-- header -->
+	<div data-role="content">    	    	
+        <form method="post" class="v2020randomform" data-ajax="false">
+        	<input type="hidden" name="nextStep" value="step3">
+        	<div data-role="fieldcontain">
+   				<label for="country">Country you live in?</label>
+				<select name="country" id="country">
+                        <option value="AF">Afghanistan</option>
+                        <option value="AX">Åland Islands</option>
+                        <option value="AL">Albania</option>
+                        <option value="DZ">Algeria</option>
+                        <option value="AS">American Samoa</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AO">Angola</option>
+                        <option value="AI">Anguilla</option>
+                        <option value="AQ">Antarctica</option>
+                        <option value="AG">Antigua and Barbuda</option>
+                        <option value="AR">Argentina</option>
+                        <option value="AM">Armenia</option>
+                        <option value="AW">Aruba</option>
+                        <option value="AU">Australia</option>
+                        <option value="AT">Austria</option>
+                        <option value="AZ">Azerbaijan</option>
+                        <option value="BS">Bahamas</option>
+                        <option value="BH">Bahrain</option>
+                        <option value="BD">Bangladesh</option>
+                        <option value="BB">Barbados</option>
+                        <option value="BY">Belarus</option>
+                        <option value="BE">Belgium</option>
+                        <option value="BZ">Belize</option>
+                        <option value="BJ">Benin</option>
+                        <option value="BM">Bermuda</option>
+                        <option value="BT">Bhutan</option>
+                        <option value="BO">Bolivia, Plurinational State of</option>
+                        <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                        <option value="BA">Bosnia and Herzegovina</option>
+                        <option value="BW">Botswana</option>
+                        <option value="BV">Bouvet Island</option>
+                        <option value="BR">Brazil</option>
+                        <option value="IO">British Indian Ocean Territory</option>
+                        <option value="BN">Brunei Darussalam</option>
+                        <option value="BG">Bulgaria</option>
+                        <option value="BF">Burkina Faso</option>
+                        <option value="BI">Burundi</option>
+                        <option value="KH">Cambodia</option>
+                        <option value="CM">Cameroon</option>
+                        <option value="CA">Canada</option>
+                        <option value="CV">Cape Verde</option>
+                        <option value="KY">Cayman Islands</option>
+                        <option value="CF">Central African Republic</option>
+                        <option value="TD">Chad</option>
+                        <option value="CL">Chile</option>
+                        <option value="CN">China</option>
+                        <option value="CX">Christmas Island</option>
+                        <option value="CC">Cocos (Keeling) Islands</option>
+                        <option value="CO">Colombia</option>
+                        <option value="KM">Comoros</option>
+                        <option value="CG">Congo</option>
+                        <option value="CD">Congo, the Democratic Republic of the</option>
+                        <option value="CK">Cook Islands</option>
+                        <option value="CR">Costa Rica</option>
+                        <option value="CI">Côte d'Ivoire</option>
+                        <option value="HR">Croatia</option>
+                        <option value="CU">Cuba</option>
+                        <option value="CW">Curaçao</option>
+                        <option value="CY">Cyprus</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="DK">Denmark</option>
+                        <option value="DJ">Djibouti</option>
+                        <option value="DM">Dominica</option>
+                        <option value="DO">Dominican Republic</option>
+                        <option value="EC">Ecuador</option>
+                        <option value="EG">Egypt</option>
+                        <option value="SV">El Salvador</option>
+                        <option value="GQ">Equatorial Guinea</option>
+                        <option value="ER">Eritrea</option>
+                        <option value="EE">Estonia</option>
+                        <option value="ET">Ethiopia</option>
+                        <option value="FK">Falkland Islands (Malvinas)</option>
+                        <option value="FO">Faroe Islands</option>
+                        <option value="FJ">Fiji</option>
+                        <option value="FI">Finland</option>
+                        <option value="FR">France</option>
+                        <option value="GF">French Guiana</option>
+                        <option value="PF">French Polynesia</option>
+                        <option value="TF">French Southern Territories</option>
+                        <option value="GA">Gabon</option>
+                        <option value="GM">Gambia</option>
+                        <option value="GE">Georgia</option>
+                        <option value="DE">Germany</option>
+                        <option value="GH">Ghana</option>
+                        <option value="GI">Gibraltar</option>
+                        <option value="GR">Greece</option>
+                        <option value="GL">Greenland</option>
+                        <option value="GD">Grenada</option>
+                        <option value="GP">Guadeloupe</option>
+                        <option value="GU">Guam</option>
+                        <option value="GT">Guatemala</option>
+                        <option value="GG">Guernsey</option>
+                        <option value="GN">Guinea</option>
+                        <option value="GW">Guinea-Bissau</option>
+                        <option value="GY">Guyana</option>
+                        <option value="HT">Haiti</option>
+                        <option value="HM">Heard Island and McDonald Islands</option>
+                        <option value="VA">Holy See (Vatican City State)</option>
+                        <option value="HN">Honduras</option>
+                        <option value="HK">Hong Kong</option>
+                        <option value="HU">Hungary</option>
+                        <option value="IS">Iceland</option>
+                        <option value="IN">India</option>
+                        <option value="ID">Indonesia</option>
+                        <option value="IR">Iran, Islamic Republic of</option>
+                        <option value="IQ">Iraq</option>
+                        <option value="IE">Ireland</option>
+                        <option value="IM">Isle of Man</option>
+                        <option value="IL">Israel</option>
+                        <option value="IT">Italy</option>
+                        <option value="JM">Jamaica</option>
+                        <option value="JP">Japan</option>
+                        <option value="JE">Jersey</option>
+                        <option value="JO">Jordan</option>
+                        <option value="KZ">Kazakhstan</option>
+                        <option value="KE">Kenya</option>
+                        <option value="KI">Kiribati</option>
+                        <option value="KP">Korea, Democratic People's Republic of</option>
+                        <option value="KR">Korea, Republic of</option>
+                        <option value="KW">Kuwait</option>
+                        <option value="KG">Kyrgyzstan</option>
+                        <option value="LA">Lao People's Democratic Republic</option>
+                        <option value="LV">Latvia</option>
+                        <option value="LB">Lebanon</option>
+                        <option value="LS">Lesotho</option>
+                        <option value="LR">Liberia</option>
+                        <option value="LY">Libya</option>
+                        <option value="LI">Liechtenstein</option>
+                        <option value="LT">Lithuania</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="MO">Macao</option>
+                        <option value="MK">Macedonia, the former Yugoslav Republic of</option>
+                        <option value="MG">Madagascar</option>
+                        <option value="MW">Malawi</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="MV">Maldives</option>
+                        <option value="ML">Mali</option>
+                        <option value="MT">Malta</option>
+                        <option value="MH">Marshall Islands</option>
+                        <option value="MQ">Martinique</option>
+                        <option value="MR">Mauritania</option>
+                        <option value="MU">Mauritius</option>
+                        <option value="YT">Mayotte</option>
+                        <option value="MX">Mexico</option>
+                        <option value="FM">Micronesia, Federated States of</option>
+                        <option value="MD">Moldova, Republic of</option>
+                        <option value="MC">Monaco</option>
+                        <option value="MN">Mongolia</option>
+                        <option value="ME">Montenegro</option>
+                        <option value="MS">Montserrat</option>
+                        <option value="MA">Morocco</option>
+                        <option value="MZ">Mozambique</option>
+                        <option value="MM">Myanmar</option>
+                        <option value="NA">Namibia</option>
+                        <option value="NR">Nauru</option>
+                        <option value="NP">Nepal</option>
+                        <option value="NL" SELECTED>Netherlands</option>
+                        <option value="NC">New Caledonia</option>
+                        <option value="NZ">New Zealand</option>
+                        <option value="NI">Nicaragua</option>
+                        <option value="NE">Niger</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="NU">Niue</option>
+                        <option value="NF">Norfolk Island</option>
+                        <option value="MP">Northern Mariana Islands</option>
+                        <option value="NO">Norway</option>
+                        <option value="OM">Oman</option>
+                        <option value="PK">Pakistan</option>
+                        <option value="PW">Palau</option>
+                        <option value="PS">Palestinian Territory, Occupied</option>
+                        <option value="PA">Panama</option>
+                        <option value="PG">Papua New Guinea</option>
+                        <option value="PY">Paraguay</option>
+                        <option value="PE">Peru</option>
+                        <option value="PH">Philippines</option>
+                        <option value="PN">Pitcairn</option>
+                        <option value="PL">Poland</option>
+                        <option value="PT">Portugal</option>
+                        <option value="PR">Puerto Rico</option>
+                        <option value="QA">Qatar</option>
+                        <option value="RE">Réunion</option>
+                        <option value="RO">Romania</option>
+                        <option value="RU">Russian Federation</option>
+                        <option value="RW">Rwanda</option>
+                        <option value="BL">Saint Barthélemy</option>
+                        <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                        <option value="KN">Saint Kitts and Nevis</option>
+                        <option value="LC">Saint Lucia</option>
+                        <option value="MF">Saint Martin (French part)</option>
+                        <option value="PM">Saint Pierre and Miquelon</option>
+                        <option value="VC">Saint Vincent and the Grenadines</option>
+                        <option value="WS">Samoa</option>
+                        <option value="SM">San Marino</option>
+                        <option value="ST">Sao Tome and Principe</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="SN">Senegal</option>
+                        <option value="RS">Serbia</option>
+                        <option value="SC">Seychelles</option>
+                        <option value="SL">Sierra Leone</option>
+                        <option value="SG">Singapore</option>
+                        <option value="SX">Sint Maarten (Dutch part)</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="SI">Slovenia</option>
+                        <option value="SB">Solomon Islands</option>
+                        <option value="SO">Somalia</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="GS">South Georgia and the South Sandwich Islands</option>
+                        <option value="SS">South Sudan</option>
+                        <option value="ES">Spain</option>
+                        <option value="LK">Sri Lanka</option>
+                        <option value="SD">Sudan</option>
+                        <option value="SR">Suriname</option>
+                        <option value="SJ">Svalbard and Jan Mayen</option>
+                        <option value="SZ">Swaziland</option>
+                        <option value="SE">Sweden</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="SY">Syrian Arab Republic</option>
+                        <option value="TW">Taiwan, Province of China</option>
+                        <option value="TJ">Tajikistan</option>
+                        <option value="TZ">Tanzania, United Republic of</option>
+                        <option value="TH">Thailand</option>
+                        <option value="TL">Timor-Leste</option>
+                        <option value="TG">Togo</option>
+                        <option value="TK">Tokelau</option>
+                        <option value="TO">Tonga</option>
+                        <option value="TT">Trinidad and Tobago</option>
+                        <option value="TN">Tunisia</option>
+                        <option value="TR">Turkey</option>
+                        <option value="TM">Turkmenistan</option>
+                        <option value="TC">Turks and Caicos Islands</option>
+                        <option value="TV">Tuvalu</option>
+                        <option value="UG">Uganda</option>
+                        <option value="UA">Ukraine</option>
+                        <option value="AE">United Arab Emirates</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="US">United States</option>
+                        <option value="UM">United States Minor Outlying Islands</option>
+                        <option value="UY">Uruguay</option>
+                        <option value="UZ">Uzbekistan</option>
+                        <option value="VU">Vanuatu</option>
+                        <option value="VE">Venezuela, Bolivarian Republic of</option>
+                        <option value="VN">Viet Nam</option>
+                        <option value="VG">Virgin Islands, British</option>
+                        <option value="VI">Virgin Islands, U.S.</option>
+                        <option value="WF">Wallis and Futuna</option>
+                        <option value="EH">Western Sahara</option>
+                        <option value="YE">Yemen</option>
+                        <option value="ZM">Zambia</option>
+                        <option value="ZW">Zimbabwe</option>
+                </select>
+			</div>
+            <div data-role="fieldcontain"> 
+				<input type="submit" name="submit2" value="Next" data-inline="true" /> 
+			</div>
+     		</form>
+   	</div>
+</div><!-- page -->
+       		    
+<!-- Page: V20:20 Random multipage form step 3-->
+<div data-role="page" id="step3" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>V20:20 Random</h1>
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
+	</div><!-- header -->
+	<div data-role="content">    	    	
+        <form method="post" class="v2020randomform" data-ajax="false">
+        	<input type="hidden" name="nextStep" value="step4">
+        	<label for="add">Create your team (max. 10)</label>              
+                <button type="button" data-icon="plus" data-theme="b" data-iconpos="left" data-inline="true" id="add">Add team members</button>   
+                <div id="set">           
+                	<div data-role="fieldcontain">
+                		<label for="teammember1">Team member 1</label>
+						<input type="text" name="teammember1" id="teammember1" value="" placeholder="Team member name" required />
+                	</div>
+               		<div data-role="fieldcontain">
+                		<label for="teammember2">Team member 2</label>
+						<input type="text" name="teammember2" id="teammember2" value="" placeholder="Team member name"  required />
+                	</div>
+                </div>
+                <div data-role="fieldcontain"> 
+					<input type="submit" name="submit3" value="Next" data-inline="true" /> 
 				</div>
-                <div data-role="fieldcontain">
-					<label for="yourname">Your name:</label>
-					<input type="text" name="yourname" id="yourname" value="" placeholder="Yourname" />
-				</div>
-                <div data-role="fieldcontain">
-					<label for="youremail">Your email:</label>
-					<input type="text" name="youremail" id="youremail" value="" placeholder="Youremail" />
-				</div>
-                <div data-role="fieldcontain">
-   					<label for="country">Country:</label>
-					<select name="country" id="country">				    		
-                            <option value="AF">Afghanistan</option>
-                            <option value="AL">Albania</option>
-                            <option value="DZ">Algeria</option>
-                            <option value="AS">American Samoa</option>
-                            <option value="AD">Andorra</option>
-                            <option value="AG">Angola</option>
-                            <option value="AI">Anguilla</option>
-                            <option value="AG">Antigua &amp; Barbuda</option>
-                            <option value="AR">Argentina</option>
-                            <option value="AA">Armenia</option>
-                            <option value="AW">Aruba</option>
-                            <option value="AU">Australia</option>
-                            <option value="AT">Austria</option>
-                            <option value="AZ">Azerbaijan</option>
-                            <option value="BS">Bahamas</option>
-                            <option value="BH">Bahrain</option>
-                            <option value="BD">Bangladesh</option>
-                            <option value="BB">Barbados</option>
-                            <option value="BY">Belarus</option>
-                            <option value="BE">Belgium</option>
-                            <option value="BZ">Belize</option>
-                            <option value="BJ">Benin</option>
-                            <option value="BM">Bermuda</option>
-                            <option value="BT">Bhutan</option>
-                            <option value="BO">Bolivia</option>
-                            <option value="BL">Bonaire</option>
-                            <option value="BA">Bosnia &amp; Herzegovina</option>
-                            <option value="BW">Botswana</option>
-                            <option value="BR">Brazil</option>
-                            <option value="BC">British Indian Ocean Ter</option>
-                            <option value="BN">Brunei</option>
-                            <option value="BG">Bulgaria</option>
-                            <option value="BF">Burkina Faso</option>
-                            <option value="BI">Burundi</option>
-                            <option value="KH">Cambodia</option>
-                            <option value="CM">Cameroon</option>
-                            <option value="CA">Canada</option>
-                            <option value="IC">Canary Islands</option>
-                            <option value="CV">Cape Verde</option>
-                            <option value="KY">Cayman Islands</option>
-                            <option value="CF">Central African Republic</option>
-                            <option value="TD">Chad</option>
-                            <option value="CD">Channel Islands</option>
-                            <option value="CL">Chile</option>
-                            <option value="CN">China</option>
-                            <option value="CI">Christmas Island</option>
-                            <option value="CS">Cocos Island</option>
-                            <option value="CO">Colombia</option>
-                            <option value="CC">Comoros</option>
-                            <option value="CG">Congo</option>
-                            <option value="CK">Cook Islands</option>
-                            <option value="CR">Costa Rica</option>
-                            <option value="CT">Cote D'Ivoire</option>
-                            <option value="HR">Croatia</option>
-                            <option value="CU">Cuba</option>
-                            <option value="CW">Curacao</option>
-                            <option value="CY">Cyprus</option>
-                            <option value="CZ">Czech Republic</option>
-                            <option value="DK">Denmark</option>
-                            <option value="DJ">Djibouti</option>
-                            <option value="DM">Dominica</option>
-                            <option value="DO">Dominican Republic</option>
-                            <option value="TM">East Timor</option>
-                            <option value="EC">Ecuador</option>
-                            <option value="EG">Egypt</option>
-                            <option value="SV">El Salvador</option>
-                            <option value="GQ">Equatorial Guinea</option>
-                            <option value="ER">Eritrea</option>
-                            <option value="EE">Estonia</option>
-                            <option value="ET">Ethiopia</option>
-                            <option value="FA">Falkland Islands</option>
-                            <option value="FO">Faroe Islands</option>
-                            <option value="FJ">Fiji</option>
-                            <option value="FI">Finland</option>
-                            <option value="FR">France</option>
-                            <option value="GF">French Guiana</option>
-                            <option value="PF">French Polynesia</option>
-                            <option value="FS">French Southern Ter</option>
-                            <option value="GA">Gabon</option>
-                            <option value="GM">Gambia</option>
-                            <option value="GE">Georgia</option>
-                            <option value="DE">Germany</option>
-                            <option value="GH">Ghana</option>
-                            <option value="GI">Gibraltar</option>
-                            <option value="GB">Great Britain</option>
-                            <option value="GR">Greece</option>
-                            <option value="GL">Greenland</option>
-                            <option value="GD">Grenada</option>
-                            <option value="GP">Guadeloupe</option>
-                            <option value="GU">Guam</option>
-                            <option value="GT">Guatemala</option>
-                            <option value="GN">Guinea</option>
-                            <option value="GY">Guyana</option>
-                            <option value="HT">Haiti</option>
-                            <option value="HW">Hawaii</option>
-                            <option value="HN">Honduras</option>
-                            <option value="HK">Hong Kong</option>
-                            <option value="HU">Hungary</option>
-                            <option value="IS">Iceland</option>
-                            <option value="IN">India</option>
-                            <option value="ID">Indonesia</option>
-                            <option value="IA">Iran</option>
-                            <option value="IQ">Iraq</option>
-                            <option value="IR">Ireland</option>
-                            <option value="IM">Isle of Man</option>
-                            <option value="IL">Israel</option>
-                            <option value="IT">Italy</option>
-                            <option value="JM">Jamaica</option>
-                            <option value="JP">Japan</option>
-                            <option value="JO">Jordan</option>
-                            <option value="KZ">Kazakhstan</option>
-                            <option value="KE">Kenya</option>
-                            <option value="KI">Kiribati</option>
-                            <option value="NK">Korea North</option>
-                            <option value="KS">Korea South</option>
-                            <option value="KW">Kuwait</option>
-                            <option value="KG">Kyrgyzstan</option>
-                            <option value="LA">Laos</option>
-                            <option value="LV">Latvia</option>
-                            <option value="LB">Lebanon</option>
-                            <option value="LS">Lesotho</option>
-                            <option value="LR">Liberia</option>
-                            <option value="LY">Libya</option>
-                            <option value="LI">Liechtenstein</option>
-                            <option value="LT">Lithuania</option>
-                            <option value="LU">Luxembourg</option>
-                            <option value="MO">Macau</option>
-                            <option value="MK">Macedonia</option>
-                            <option value="MG">Madagascar</option>
-                            <option value="MY">Malaysia</option>
-                            <option value="MW">Malawi</option>
-                            <option value="MV">Maldives</option>
-                            <option value="ML">Mali</option>
-                            <option value="MT">Malta</option>
-                            <option value="MH">Marshall Islands</option>
-                            <option value="MQ">Martinique</option>
-                            <option value="MR">Mauritania</option>
-                            <option value="MU">Mauritius</option>
-                            <option value="ME">Mayotte</option>
-                            <option value="MX">Mexico</option>
-                            <option value="MI">Midway Islands</option>
-                            <option value="MD">Moldova</option>
-                            <option value="MC">Monaco</option>
-                            <option value="MN">Mongolia</option>
-                            <option value="MS">Montserrat</option>
-                            <option value="MA">Morocco</option>
-                            <option value="MZ">Mozambique</option>
-                            <option value="MM">Myanmar</option>
-                            <option value="NA">Nambia</option>
-                            <option value="NU">Nauru</option>
-                            <option value="NP">Nepal</option>
-                            <option value="AN">Netherland Antilles</option>
-                            <option value="NL" SELECTED>Netherlands (Holland, Europe)</option>
-                            <option value="NV">Nevis</option>
-                            <option value="NC">New Caledonia</option>
-                            <option value="NZ">New Zealand</option>
-                            <option value="NI">Nicaragua</option>
-                            <option value="NE">Niger</option>
-                            <option value="NG">Nigeria</option>
-                            <option value="NW">Niue</option>
-                            <option value="NF">Norfolk Island</option>
-                            <option value="NO">Norway</option>
-                            <option value="OM">Oman</option>
-                            <option value="PK">Pakistan</option>
-                            <option value="PW">Palau Island</option>
-                            <option value="PS">Palestine</option>
-                            <option value="PA">Panama</option>
-                            <option value="PG">Papua New Guinea</option>
-                            <option value="PY">Paraguay</option>
-                            <option value="PE">Peru</option>
-                            <option value="PH">Philippines</option>
-                            <option value="PO">Pitcairn Island</option>
-                            <option value="PL">Poland</option>
-                            <option value="PT">Portugal</option>
-                            <option value="PR">Puerto Rico</option>
-                            <option value="QA">Qatar</option>
-                            <option value="ME">Republic of Montenegro</option>
-                            <option value="RS">Republic of Serbia</option>
-                            <option value="RE">Reunion</option>
-                            <option value="RO">Romania</option>
-                            <option value="RU">Russia</option>
-                            <option value="RW">Rwanda</option>
-                            <option value="NT">St Barthelemy</option>
-                            <option value="EU">St Eustatius</option>
-                            <option value="HE">St Helena</option>
-                            <option value="KN">St Kitts-Nevis</option>
-                            <option value="LC">St Lucia</option>
-                            <option value="MB">St Maarten</option>
-                            <option value="PM">St Pierre &amp; Miquelon</option>
-                            <option value="VC">St Vincent &amp; Grenadines</option>
-                            <option value="SP">Saipan</option>
-                            <option value="SO">Samoa</option>
-                            <option value="AS">Samoa American</option>
-                            <option value="SM">San Marino</option>
-                            <option value="ST">Sao Tome &amp; Principe</option>
-                            <option value="SA">Saudi Arabia</option>
-                            <option value="SN">Senegal</option>
-                            <option value="SC">Seychelles</option>
-                            <option value="SL">Sierra Leone</option>
-                            <option value="SG">Singapore</option>
-                            <option value="SK">Slovakia</option>
-                            <option value="SI">Slovenia</option>
-                            <option value="SB">Solomon Islands</option>
-                            <option value="OI">Somalia</option>
-                            <option value="ZA">South Africa</option>
-                            <option value="ES">Spain</option>
-                            <option value="LK">Sri Lanka</option>
-                            <option value="SD">Sudan</option>
-                            <option value="SR">Suriname</option>
-                            <option value="SZ">Swaziland</option>
-                            <option value="SE">Sweden</option>
-                            <option value="CH">Switzerland</option>
-                            <option value="SY">Syria</option>
-                            <option value="TA">Tahiti</option>
-                            <option value="TW">Taiwan</option>
-                            <option value="TJ">Tajikistan</option>
-                            <option value="TZ">Tanzania</option>
-                            <option value="TH">Thailand</option>
-                            <option value="TG">Togo</option>
-                            <option value="TK">Tokelau</option>
-                            <option value="TO">Tonga</option>
-                            <option value="TT">Trinidad &amp; Tobago</option>
-                            <option value="TN">Tunisia</option>
-                            <option value="TR">Turkey</option>
-                            <option value="TU">Turkmenistan</option>
-                            <option value="TC">Turks &amp; Caicos Is</option>
-                            <option value="TV">Tuvalu</option>
-                            <option value="UG">Uganda</option>
-                            <option value="UA">Ukraine</option>
-                            <option value="AE">United Arab Emirates</option>
-                            <option value="GB">United Kingdom</option>
-                            <option value="US">United States of America</option>
-                            <option value="UY">Uruguay</option>
-                            <option value="UZ">Uzbekistan</option>
-                            <option value="VU">Vanuatu</option>
-                            <option value="VS">Vatican City State</option>
-                            <option value="VE">Venezuela</option>
-                            <option value="VN">Vietnam</option>
-                            <option value="VB">Virgin Islands (Brit)</option>
-                            <option value="VA">Virgin Islands (USA)</option>
-                            <option value="WK">Wake Island</option>
-                            <option value="WF">Wallis &amp; Futana Is</option>
-                            <option value="YE">Yemen</option>
-                            <option value="ZR">Zaire</option>
-                            <option value="ZM">Zambia</option>
-                            <option value="ZW">Zimbabwe</option>
-					</select>
-				</div>
-                <div id="city"></div>
-                <div id="map_canvas"></div>
-                <div data-role="fieldcontain">
-                	<label for="teammember1">Team member 1</label>
-					<input type="text" name="teammember1" id="teammember1" value="" placeholder="Teammember1" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember2">Team member 2</label>
-					<input type="text" name="teammember2" id="teammember2" value="" placeholder="Teammember2" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember3">Team member 3</label>
-					<input type="text" name="teammember3" id="teammember3" value="" placeholder="Teammember3" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember4">Team member 4</label>
-					<input type="text" name="teammember4" id="teammember4" value="" placeholder="Teammember4" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember5">Team member 5</label>
-					<input type="text" name="teammember5" id="teammember5" value="" placeholder="Teammember5" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember6">Team member 6</label>
-					<input type="text" name="teammember6" id="teammember6" value="" placeholder="Teammember6" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember7">Team member 7</label>
-					<input type="text" name="teammember7" id="teammember7" value="" placeholder="Teammember7" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember8">Team member 8</label>
-					<input type="text" name="teammember8" id="teammember8" value="" placeholder="Teammember8" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember9">Team member 9</label>
-					<input type="text" name="teammember9" id="teammember9" value="" placeholder="Teammember9" />
-                </div>
-                <div data-role="fieldcontain">
-                	<label for="teammember10">Team member 10</label>
-					<input type="text" name="teammember10" id="teammember10" value="" placeholder="Teammember10" />
-                </div>
-                <div data-role="fieldcontain">
-                	<button type="text" name="submit" id="submit" type="submit" data-theme="b">Play the game</button>
-                </div>
-            </div>
-            </form>                 
-	</div><!-- formcontent -->
-    <div id="confirmationcontent" data-role="content">
-    	<p>Thank you for joining Vision 20:20 Random</p>
-        <p>We have sent an e-mail to you.</p>
-    </div><!-- confirmationcontent -->
-	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
-    	<div data-role="navbar">
-        	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
-                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
-                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
-            </ul>			
-        </div><!-- navbar -->
-	</div><!-- footer -->
+     			</form>
+   	</div>
+</div><!-- page -->
+                
+<!-- Page: V20:20 Random multipage form step 4-->
+<div data-role="page" id="step4" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>V20:20 Random</h1>  
+        <a href="#home" data-icon="home" data-theme="a" data-role="button" data-iconpos="notext">Home</a>   
+	</div><!-- header -->
+	<div data-role="content">    	    	
+        <form method="post" class="v2020randomform" data-ajax="false">
+        	<input type="hidden" name="nextStep" value="http://www.theblessing.nl/pointyouthapp/v2020random.php">            
+            <div id="formResponse"></div>  
+         	<div id="findout" data-role="fieldcontain"> 
+            	OK, let's find out...
+				<input type="submit" name="submit4" value="Show my Random city!" data-theme="b" /> 
+		 	</div>        
+        	<div id="city"></div>
+        	<div id="map_canvas"></div>
+            <div id="notification"></div>            
+     	</form>
+   	</div>
 </div><!-- page -->
 
 <!-- Page: MAP band -->
@@ -509,12 +518,12 @@ Maar nu is de vraag, hoe doe je het? Daarom kregen we handige tips & tricks die 
 		<h1>MAP band</h1>
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
 	</div><!-- header -->
-	<div data-role="content" >
-    <img src="images/mapband.png" style="float:left;padding-right:10px" />
+	<div data-role="content">
+    <img src="images/mapband/mapband.png" style="float:left;padding-right:10px" />
     <strong>MAP band</strong> is a contemporary Praise and Worship group from The Netherlands. They have their own unique sound and songs. Micha Maasbach is the lead vocal and writer of the lyrics and music. There are three other singers that accompany him and a four men band. The ‘Make A Point’ Band has performed at numerous occasions in The Netherlands, Switzerland and The Philippines. Although their music is geared towards the youth it attracts people of all ages.
 Their songs includes up beat and intimate praise. Every concert is an experience that stays in the mind and heart.
 <br><br>
-Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/artist/map-band/id570794782">iTunes</a> & Spotify<br>    	
+Order now their release album (DVD/CD) on <a href="#" onclick="window.open('https://itunes.apple.com/us/artist/map-band/id570794782', '_blank', 'location=yes');">iTunes</a> & Spotify<br>    	
 		<div class="ui-grid-a" id="videolist"></div>	
 	</div><!-- content -->
 	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
@@ -522,7 +531,7 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
         	<ul>
                 <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
                 <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
@@ -532,14 +541,13 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
 
 <!-- Page: Videoplayer -->
 <div data-role="page" id="videoplayer" data-theme="a">
-	<div data-role="header" data-position="fixed" data-id="py_header">
-		<a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="flip">MAP band</a>
-		<h1>MAP band</h1>  
-        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>      
+      <div data-role="header" data-position="fixed" data-id="py_header">
+            <a href="#mapband" data-icon="back" data-iconpos="notext" data-direction="reverse" data-transition="flip">MAP band</a>
+            <h1>MAP band</h1>         
     </div><!-- header -->
-	<div data-role="content"> 
-    	<div id="myplayer"></div>   	
-	</div><!-- content -->
+      <div data-role="content"> 
+      <div id="ytplayer"></div>         
+      </div><!-- content -->  
 </div><!-- page -->
 
 <!-- Page: Meeting point -->
@@ -558,43 +566,43 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
 		<div data-role="collapsible-set">       
 	        <div data-role="collapsible">
         		<h3>Amsterdam</h3>
-	            <p><table span="2" cellpadding="10"><tr><td><img src="images/sinclair.png"></td><td><strong>Adres:</strong> Calvariekerk<br>Derkinderenstraat 90, Amsterdam<br><strong>Tijd:</strong> zaterdag om 19.00 uur<br><strong>Youth Manager:</strong> Sinclair van Dalen<br><strong>E-mail:</strong> <a href="mailto:point@theblessingamsterdam.com?subject=POiNT!APP Contact">
-point@theblessingamsterdam.com</a></td></tr></table> </p>
+	            <p><img src="images/meetingpoints/sinclair.png" style="float:left;padding-right:10px"><strong>Adres:</strong> Calvariekerk<br>Derkinderenstraat 90, Amsterdam<br><strong>Tijd:</strong> zaterdag om 19.00 uur<br><strong>Youth Manager:</strong> Sinclair van Dalen<br><a href="mailto:point@theblessingamsterdam.com?subject=POiNT!APP Contact">
+point@theblessingamsterdam.com</a></p>
     	    </div><!-- collapsible item -->
             <div data-role="collapsible">
         		<h3>Breda</h3>
-	            <p><table span="2" cellpadding="10"><tr><td><img src="images/anton.png"></td><td><strong>Adres:</strong> Christus Triumfatorkerk<br>Zandberglaan 31, Breda<br><strong>Tijd:</strong> zaterdag om 19.00 uur<br><strong>Youth Manager:</strong> Anton van der Heijden<br><strong>E-mail:</strong> <a href="mailto:point@theblessingbreda.com?subject=POiNT!APP Contact">
-point@theblessingbreda.com</a></td></tr></table> </p>
+	            <p><img src="images/meetingpoints/anton.png" style="float:left;padding-right:10px"><strong>Adres:</strong> Christus Triumfatorkerk<br>Zandberglaan 31, Breda<br><strong>Tijd:</strong> zaterdag om 19.00 uur<br><strong>Youth Manager:</strong> Anton van der Heijden<br><a href="mailto:point@theblessingbreda.com?subject=POiNT!APP Contact">
+point@theblessingbreda.com</a></p>
     	    </div><!-- collapsible item -->
             <div data-role="collapsible">
         		<h3>Den Haag</h3>
-	            <p><table span="2" cellpadding="10"><tr><td><img src="images/alissa.png"></td><td><strong>Adres:</strong> JMWZ HQ<br>Apeldoornselaan 2, Den Haag<br><strong>Tijd:</strong> zaterdag om 19.00 uur<br><strong>Youth Manager:</strong> Alissa Hathie<br><strong>E-mail:</strong> <a href="mailto:point@theblessingdenhaag.com?subject=POiNT!APP Contact">
-point@theblessingdenhaag.com</a></td></tr></table> </p>
+	            <p><img src="images/meetingpoints/alissa.png" style="float:left;padding-right:10px"><strong>Adres:</strong> JMWZ HQ<br>Apeldoornselaan 2, Den Haag<br><strong>Tijd:</strong> zaterdag om 19.00 uur<br><strong>Youth Manager:</strong> Alissa Hathie<br><a href="mailto:point@theblessingdenhaag.com?subject=POiNT!APP Contact">
+point@theblessingdenhaag.com</a></p>
     	    </div><!-- collapsible item -->
             <div data-role="collapsible">
         		<h3>Dordrecht</h3>
-	            <p><table span="2" cellpadding="10"><tr><td><img src="images/orfeo.png"></td><td><strong>Adres:</strong> Torenschoolkerk<br>Brouwersdijk 36, Dordrecht<br><strong>Tijd:</strong> zaterdag om 19.30 uur<br><strong>Youth Manager:</strong> Orfeo Ost<br><strong>E-mail:</strong> <a href="mailto:point@theblessingdordrecht.com?subject=POiNT!APP Contact">
-point@theblessingdordrecht.com</a></td></tr></table> </p>
+	            <p><img src="images/meetingpoints/orfeo.png" style="float:left;padding-right:10px"><strong>Adres:</strong> Torenschoolkerk<br>Brouwersdijk 36, Dordrecht<br><strong>Tijd:</strong> zaterdag om 19.30 uur<br><strong>Youth Manager:</strong> Orfeo Ost<br><a href="mailto:point@theblessingdordrecht.com?subject=POiNT!APP Contact">
+point@theblessingdordrecht.com</a></p>
     	    </div><!-- collapsible item -->
             <div data-role="collapsible">
         		<h3>Gouda</h3>
-	            <p><table span="2" cellpadding="10"><tr><td><img src="images/tim.png"></td><td><strong>Adres:</strong> Gouwerkerk<br>Hoge Gouwe 39, Gouda<br><strong>Tijd:</strong> zaterdag om 19.30 uur<br><strong>Youth Manager:</strong> Tim Wijnhof<br><strong>E-mail:</strong> <a href="mailto:point@theblessinggouda.com?subject=POiNT!APP Contact">
-point@theblessinggouda.com</a></td></tr></table> </p>
+	            <p><img src="images/meetingpoints/tim.png" style="float:left;padding-right:10px"><strong>Adres:</strong> Gouwerkerk<br>Hoge Gouwe 39, Gouda<br><strong>Tijd:</strong> zaterdag om 19.30 uur<br><strong>Youth Manager:</strong> Tim Wijnhof<br><a href="mailto:point@theblessinggouda.com?subject=POiNT!APP Contact">
+point@theblessinggouda.com</a></p>
     	    </div><!-- collapsible item -->
             <div data-role="collapsible">
         		<h3>Utrecht</h3>
-	            <p><table span="2" cellpadding="10"><tr><td><img src="images/patrick.png"></td><td><strong>Adres:</strong> Immanuelkerk<br>'t Goylaan 129<br><strong>Tijd:</strong> zaterdag om 19.30 uur<br><strong>Youth Manager:</strong> Patrick Doorn<br><strong>E-mail:</strong> <a href="mailto:point@theblessingutrecht.com?subject=POiNT!APP Contact">
-point@theblessingutrecht.com</a></td></tr></table> </p>
+	            <p><img src="images/meetingpoints/patrick.png" style="float:left;padding-right:10px"><strong>Adres:</strong> Immanuelkerk<br>'t Goylaan 129<br><strong>Tijd:</strong> zaterdag om 19.30 uur<br><strong>Youth Manager:</strong> Patrick Doorn<br><a href="mailto:point@theblessingutrecht.com?subject=POiNT!APP Contact">
+point@theblessingutrecht.com</a></p>
     	    </div><!-- collapsible item -->
             <div data-role="collapsible">
         		<h3>Vlaardingen</h3>
-	            <p><table span="2" cellpadding="10"><tr><td><img src="images/jeconia.png"></td><td><strong>Adres:</strong> Vredeskerk<br>Olmendreef 103, Vlaardingen<br><strong>Tijd:</strong> zaterdag om 19.30 uur<br><strong>Youth Manager:</strong> Jeconia Maasbach<br><strong>E-mail:</strong> <a href="mailto:point@theblessingvlaardingen.com?subject=POiNT!APP Contact">
-point@theblessingvlaardingen.com</a></td></tr></table> </p>
+	            <p><img src="images/meetingpoints/jeconia.png" style="float:left;padding-right:10px"><strong>Adres:</strong> Vredeskerk<br>Olmendreef 103, Vlaardingen<br><strong>Tijd:</strong> zaterdag om 19.30 uur<br><strong>Youth Manager:</strong> Jeconia Maasbach<br><a href="mailto:point@theblessingvlaardingen.com?subject=POiNT!APP Contact">
+point@theblessingvlaardingen.com</a></p>
     	    </div><!-- collapsible item -->
             <div data-role="collapsible">
         		<h3>Zwolle</h3>
-	            <p><table span="2" cellpadding="10"><tr><td><img src="images/othniel.png"></td><td><strong>Adres:</strong> Wijkcentrum Holtenbroek<br>Bachlaan 20, Zwolle<br><strong>Tijd:</strong> derde zondag van de maand om 10.30 uur<br><strong>Youth Manager:</strong> Othniel de Bruijn<br><strong>E-mail:</strong> <a href="mailto:point@theblessingzwolle.com?subject=POiNT!APP Contact">
-point@theblessingzwolle.com</a></td></tr></table> </p>
+	            <p><img src="images/meetingpoints/othniel.png" style="float:left;padding-right:10px"><strong>Adres:</strong> Wijkcentrum Holtenbroek<br>Bachlaan 20, Zwolle<br><strong>Tijd:</strong> derde zondag van de maand om 10.30 uur<br><strong>Youth Manager:</strong> Othniel de Bruijn<br><a href="mailto:point@theblessingzwolle.com?subject=POiNT!APP Contact">
+point@theblessingzwolle.com</a></p>
     	    </div><!-- collapsible item -->
         </div><!-- collapsible set -->
 	</div><!-- content -->
@@ -603,42 +611,13 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
         	<ul>
                 <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
                 <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
         </div><!-- navbar -->
 	</div><!-- footer -->
 </div><!-- page -->
-
-<!-- Page: Contact -->
-<div data-role="page" id="contact" data-theme="a">
-	<div data-role="header" data-position="fixed" data-id="py_header">
-		<h1>Contact</h1>
-        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
-	</div><!-- header -->
-	<div data-role="content">	
-    	<ul data-role="listview">
-			<li data-icon="false"><a href="http://www.pointyouth.com" target="_blank">Website</a></li>
-        	<li data-icon="false"><a href="http://www.facebook.com/pages/POiNTYouth/111803732303843" target="_blank">Facebook</a></li>
-        	<li data-icon="false"><a href="http://www.youtube.com/makeapointband" target="_blank">YouTube channel</a></li>
-        	<li data-icon="false"><a href="mailto:info@pointyouth.com">Write us</a></li>
-        	<li data-icon="false"><a href="mailto:info@gpnetwork.com">Prayer Request</a></li>  
-        	<li data-icon="arrow-r"><a href="#maasbachradio" data-icon="arrow-r" data-transition="slide">Listen to Maasbach Radio</a></li>
-   		</ul>                 
-	</div><!-- content -->
-	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
-    	<div data-role="navbar">
-        	<ul>
-                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
-                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
-                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
-                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
-            </ul>			
-        </div><!-- navbar -->
-	</div><!-- footer -->
-</div><!-- page -->	
 
 <!-- Page: Study -->
 <div data-role="page" id="study" data-theme="a">
@@ -653,6 +632,31 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
         <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>       
     </div><!-- header -->
 	<div data-role="content"> 
+    		<ul data-role="listview" data-inset="true">
+   				 <li><a href="#study_nl" class="alignleft" id="studyFeed"><img src="images/countryflags/NL.png" alt="Dutch" class="ui-li-icon">Dutch</a></li>
+    			<li><a href="#study_eng" class="alignleft" id="studyFeedEng"><img src="images/countryflags/US.png" alt="English" class="ui-li-icon ui-corner-none" >English</a></li>
+			</ul>
+	</div><!-- content -->
+    <div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
+    	<div data-role="navbar">
+        	<ul>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
+                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
+            </ul>			
+        </div><!-- navbar -->
+	</div><!-- footer -->	
+</div><!-- page -->	
+
+<!-- Page: Study_NL -->
+<div data-role="page" id="study_nl" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>Study (NL)</h1>     
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>       
+    </div><!-- header -->
+	<div data-role="content"> 
     	<div id="studyfeed"></div>   	
 	</div><!-- content -->
     <div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
@@ -660,7 +664,7 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
         	<ul>
                 <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
                 <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
-                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip">MAP</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
                 <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
                 <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
             </ul>			
@@ -672,10 +676,43 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
 <div data-role="page" id="studypost" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
 		<a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
-		<h1>Study</h1>        
+		<h1>Study (NL)</h1>        
     </div><!-- header -->
 	<div data-role="content"> 
     	<div id="studyitem"></div>   	
+	</div><!-- content -->
+</div><!-- page -->
+
+<!-- Page: Study_ENG -->
+<div data-role="page" id="study_eng" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>Study (ENG)</h1>        
+        <a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>       
+    </div><!-- header -->
+	<div data-role="content"> 
+    	<div id="studyfeed_eng"></div>   	
+	</div><!-- content -->
+    <div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
+    	<div data-role="navbar">
+        	<ul>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
+                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
+            </ul>			
+        </div><!-- navbar -->
+	</div><!-- footer -->	
+</div><!-- page -->	
+
+<!-- Page: StudyItem_ENG -->
+<div data-role="page" id="studypost_eng" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<a href="#" data-rel="back" data-icon="back" data-theme="a" data-role="button" data-iconpos="notext">Back</a>
+		<h1>Study (ENG)</h1>        
+    </div><!-- header -->
+	<div data-role="content"> 
+    	<div id="studyitem_eng"></div>   	
 	</div><!-- content -->
 </div><!-- page -->
 
@@ -702,96 +739,45 @@ point@theblessingzwolle.com</a></td></tr></table> </p>
 	</div><!-- content -->	
 </div><!-- page -->	
 
-<script src="http://www.theblessing.nl/PWYM/?json=get_recent_posts&callback=newsFeed&count=7&page=1" type="text/javascript"></script>
+<script src="http://www.theblessing.nl/PWYM/?json=get_category_posts&id=20&callback=newsFeed&count=7&page=1" type="text/javascript"></script>
 
-<script src="http://www.theblessing.nl/PWYM/?json=get_category_posts&id=17&callback=studyFeed" type="text/javascript"></script>
-
-<script src="http://gdata.youtube.com/feeds/users/makeapointband/uploads?alt=json-in-script&max-results=30&callback=mapVideos" type="text/javascript"></script>
-
-<script type="text/javascript">
-//add onchange event to country select element
-$("#country").bind( "change", function() {
-  //debug alert("hello");
-  //declare country variable
-  var country = "";
-  
-  //declare amount of cities to lookup
-  var cityCount = 1000;
-  
-  //declare en set random number between 1-100 for selecting random item in city array
-  var randomNumber = Math.floor(Math.random() * cityCount);
-  
-  //declare and set city longtitude and latitude to default (JMWZ)
-  var defaultCoordinates = '52.070511,4.28381';
-  var lookupCoordinates = defaultCoordinates;
-  
-  //for each selected value in country
-  $("select option:selected").each(function () {
-	  		country += $(this).val();
-			//debug var test = 'http://api.geonames.org/searchJSON?&country=' + city +'&maxRows=' + cityCount + '&username=pointyouth';
-			//debug alert('stad ' + test);
-			//get JSON Data with list of city in given country	  		
-			$.getJSON('http://api.geonames.org/searchJSON?&country=' + country +'&maxRows=' + cityCount + '&username=pointyouth',
-			function(data){	
-				//alter cityCount when the returned cityCount is lower then declared
-				if (data.totalResultsCount == 0){
-					$('#city').html('<h2>Sorry no random city available</h2>');	
-					return;
-				}
-				else if (data.totalResultsCount < cityCount){
-
-					cityCount = data.totalResultsCount;	
-				}			
-				
-				//to filter out only cities in JSON result, we lookup another randomNumber if not a city but a region is returned
-				while(data.geonames[randomNumber].fclName != 'city, village,...'){
-					randomNumber = Math.floor(Math.random() * cityCount);
-				}				
-				
-				// output random city
-				var output='';
-				output += '<h2>' + data.geonames[randomNumber].toponymName + '</h2>';	
-				
-				//debug output += cityCount;			
-				$('#city').html(output);
-				
-				//update lookupCoordinates with longtitude and latitude of returned city 
-				lookupCoordinates = data.geonames[randomNumber].lat + "," + data.geonames[randomNumber].lng;
-				//alert(lookupCoordinates);
-				//return;
-				
-				//clean out earlier maps
-				$('#map_canvas').gmap('destroy');
-				//draw google maps api							
-				$('#map_canvas').gmap({'zoom':9, 'center':lookupCoordinates}).bind('init', function(ev, map) {
-					$('#map_canvas').gmap('addMarker', {'position': lookupCoordinates, 'bounds': false,'animation':google.maps.Animation.BOUNCE}).click(function() {
-						$('#map_canvas').gmap('openInfoWindow', {'content': 'Your Vision 20:20 Random place!'}, this);
-					});
-				});			
-				
-			});	
-  });  
-});
-</script>
-<!--<script type="text/javascript">
-$(function() {
-	
-	$('#map_canvas').gmap('getCurrentPosition', function(position, status) {
-		if ( status === 'OK' ) {
-			var clientPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-			$('#map_canvas').gmap('addMarker', {'position': clientPosition, 'bounds': true});
-			$('#map_canvas').gmap('addShape', 'Circle', { 
-				'strokeWeight': 0, 
-				'fillColor': "#008595", 
-				'fillOpacity': 0.25, 
-				'center': clientPosition, 
-				'radius': 15, 
-				'clickable': false 
-			});
+<script type="text/javascript">	
+    var nextId = 2;
+	//bind add team member call to add team member button in form
+    $("#add").click(function() {
+		//debug alert("6");
+        nextId++;
+		if (nextId < 11){
+	        var content = "<div data-role='fieldcontain' class='ui-field-contain ui-body ui-br'><label for='teammember'" + nextId + "' class='ui-input-text'>Team member " + nextId + "</label><input type='text' name='teammember" + nextId + "' id='teammember" + nextId + "' value=''  placeholder='Team member name' class='ui-input-text ui-body-a ui-corner-all ui-shadow-inset' /></div>";
+        	$("#set").append(content);
 		}
-	});
+    });
+	
+// bind form handling call to form init
+$("#v2020random").bind("pageinit", function() {
+	$("form.v2020randomform").bind("submit", handleV2020RandomForm);    
 });
-</script>-->
 
+// bind json feed calls to nav buttons
+$("#studyFeed").click(studyFeed());
+$("#studyFeedEng").click(studyFeed_eng());
+$("#mapbandnav").click(mapVideos());
+
+// bind map stopvideo function to videoplayer exit
+$("#videoplayer").bind('pagebeforehide', function(){
+	player.stopVideo();
+});
+
+// Load the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// Replace the 'ytplayer' element with an <iframe> and
+// YouTube player after the API code downloads.
+var player;
+
+</script>
 </body>
 </html>
