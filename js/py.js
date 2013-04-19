@@ -85,10 +85,8 @@ function playVideo(id, title, description){
 
 //function will be called when Youtube Iframe Player API async is done loading
 function onYouTubePlayerAPIReady() {
-	 player = new YT.Player('ytplayer', {
-      height: '390',
-      width: '640',
-      videoId: 'M7lc1UVf-VE'
+	 player = new YT.Player('ytplayer', {    
+      videoId: 'KBXqTv-sKd8'
     });
 }
 
