@@ -159,5 +159,25 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-# Mac crap
+# Git stuff #
+#.gitignore
+
+# BBEdit stuff #
+.*~
+*.bbprojectsettings
+*.bbprojectd/
+
+# SASS #
+.sass-cache/*
+*/.sass-cache/*
+
+# OS generated files #
+######################
 .DS_Store
+.DS_Store?
+#._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
