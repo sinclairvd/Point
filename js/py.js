@@ -67,10 +67,7 @@ function mapVideos(){
 					
 					output += '<div>';
 					
-					output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';
-					//by SJS on 20130418 tried to use without iframe, but this does not give you option to go back to app
-					// and will user get stuck in webview
-					//output += "<a href='http://www.youtube.com/embed/" + id +"?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1' data-transition='fade'";
+					output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';					
 					output += '<h3 class="movietitle">' + title + '</h3>';
 					output += '<img src="' + thumbnail + '" alt="' + title +'" />';
 					output += '</a>';
@@ -81,12 +78,18 @@ function mapVideos(){
 		});	// get JSON Data for MAP videos	
 }
 
-function playVideo(id, title, description){	
-	//this code show metadata, but when orientation is changed of phone, this is not desirable
-	//output += '<h3>' + title + '</h3>';
-	//output += '<p>' + unescape(description) + '</p>';
-	var src = "http://www.youtube.com/embed/" + id + "?wmode=transparent&amp;HD=0&amp;showinfo=0&amp;controls=1&amp;autoplay=1&amp;";	
-	$('#player').attr("src",src);
+function playVideo(id, title, description){		
+	player.loadVideoById(id);
+	
+}
+
+//function will be called when Youtube Iframe Player API async is done loading
+function onYouTubePlayerAPIReady() {
+	 player = new YT.Player('ytplayer', {
+      height: '390',
+      width: '640',
+      videoId: 'M7lc1UVf-VE'
+    });
 }
 
 function studyFeed(){	
@@ -332,9 +335,3 @@ function handleV2020RandomForm(e) {
 	//alert("just prevented default post");
     
 };
-
-
-<!-- 20130415: Francis: function to close the open youtube video when leaving page -->
-function StopVideo(){
-	document.getElementById("myplayer").innerHTML =  '';
-}

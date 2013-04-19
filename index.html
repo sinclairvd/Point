@@ -485,7 +485,7 @@ Order now their release album (DVD/CD) on <a href="https://itunes.apple.com/us/a
             <h1>MAP band</h1>         
     </div><!-- header -->
       <div data-role="content"> 
-      <div id="myplayer"><iframe src="" id="player" name="" frameborder="0" allowfullscreen></iframe></div>         
+      <div id="ytplayer"></div>         
       </div><!-- content -->  
 </div><!-- page -->
 
@@ -711,6 +711,7 @@ point@theblessingzwolle.com</a></p>
 
 <script type="text/javascript">	
     var nextId = 2;
+	//bind add team member call to add team member button in form
     $("#add").click(function() {
 		//debug alert("6");
         nextId++;
@@ -720,19 +721,30 @@ point@theblessingzwolle.com</a></p>
 		}
     });
 	
-
+// bind form handling call to form init
 $("#v2020random").bind("pageinit", function() {
 	$("form.v2020randomform").bind("submit", handleV2020RandomForm);    
 });
 
-
+// bind json feed calls to nav buttons
 $("#studyFeed").click(studyFeed());
 $("#studyFeedEng").click(studyFeed_eng());
 $("#mapbandnav").click(mapVideos());
 
+// bind map stopvideo function to videoplayer exit
 $("#videoplayer").bind('pagebeforehide', function(){
-	$("#player").attr("src","");	
+	player.stopVideo();
 });
+
+// Load the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// Replace the 'ytplayer' element with an <iframe> and
+// YouTube player after the API code downloads.
+var player;
 
 </script>
 </body>
