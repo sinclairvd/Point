@@ -351,8 +351,8 @@ function checkConnection() {
         states[Connection.CELL_4G]  = 'Cell 4G connection';
         states[Connection.NONE]     = 'No network connection';
  
-        //alert('Connection type: '+ states[networkState]);
-		if(networkState == Connection.NONE){
+        alert('Connection type: '+ states[networkState]);
+		if(networkState == 'No network connection'){
 			// Handle the offline event
 		    // redirect to offline page   
 			$.mobile.changePage('#offline');
