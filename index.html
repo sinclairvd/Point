@@ -34,25 +34,45 @@
     //
     function onDeviceReady() {
         // Now safe to use the PhoneGap API
-		alert("test");
+		//alert("test");
 		checkConnection();
-        document.addEventListener("offline", onOffline, false);
-		document.addEventListener("online", onOnline, false);
+        //document.addEventListener("offline", onOffline, false);
+		//document.addEventListener("online", onOnline, false);
     }   
-
-    // Handle the offline event
-    //
-    //function onOffline() {
-	//	$.mobile.changePage('#dialog', 'pop', true, true);
-    //}
 </script>
 
 <link href="css/point.css" rel="stylesheet" type="text/css"/>
 </head> 
 <body> 
-<!-- Dialog: No Internet Connection -->
-<div id="dialog" data-role="dialog">No Internet Connection</div>
-<!-- Dialog -->
+
+<!-- Page: Offline: No Internet Connection -->
+<div id="offline" data-role="page" data-theme="a">
+	<div data-role="header" data-position="fixed" data-id="py_header">
+		<h1>No Internet</h1>        
+        <div data-role="navbar">
+        	<ul>
+            	<li><a href="#" data-role="button" data-transition="flip">NEWS FEED</a></li>
+            	<li><a href="#contact" data-role="button" data-transition="flip">CONTACT</a></li>
+            </ul>
+        </div><!-- navbar -->
+	</div><!-- header -->
+	<div data-role="content">    	
+    	<h3><font color='1fbeca'>NO INTERNET CONNECTION</font></h3>
+        <p>Try again later</p>
+	</div><!-- content -->
+	<div data-role="footer" data-position="fixed" data-id="py_footer" data-theme="b">
+    	<div data-role="navbar">
+        	<ul>
+                <li><a href="#home" data-role="button" data-icon="home" data-transition="flip">HOME</a></li>
+                <li><a href="#action" data-ajax="false" data-role="button" data-icon="action" data-transition="flip">ACTION</a></li>
+                <li><a href="#mapband" data-role="button" data-icon="music" data-transition="flip" id="mapbandnav">MAP</a></li>
+                <li><a href="#meetingpoint" data-role="button" data-icon="meetingpoint" data-transition="flip">MEET</a></li>                
+                <li><a href="#study" data-role="button" data-icon="sermons" data-transition="flip">STUDY</a></li> 
+            </ul>			
+        </div><!-- navbar -->
+	</div><!-- footer -->
+</div><!-- page -->
+
 <!-- Page: Home -->
 <div data-role="page" id="home" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
@@ -766,7 +786,7 @@ $("#studyFeedEng").click(studyFeed_eng());
 $("#mapbandnav").click(mapVideos());
 
 // bind map stopvideo function to videoplayer exit
-$("#videoplayer").bind('pagebeforehide', function(){
+$("#videoplayer").live('pagebeforehide', function(){
 	player.stopVideo();
 });
 

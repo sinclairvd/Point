@@ -91,7 +91,8 @@ function onYouTubePlayerAPIReady() {
     });
 }
 
-function studyFeed(){	
+function studyFeed(){
+	checkConnection();	
 	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_category_posts&id=17&callback=?',
 		function(data){
 			//debug console.log(data);
@@ -347,7 +348,13 @@ function checkConnection() {
         states[Connection.CELL_4G]  = 'Cell 4G connection';
         states[Connection.NONE]     = 'No network connection';
  
-        alert('Connection type: '+ states[networkState]);
+        //alert('Connection type: '+ states[networkState]);
+		if(networkState == Connection.NONE){
+			// Handle the offline event
+		    // redirect to offline page   
+			$.mobile.changePage('#offline');
+			return false;		    
+		}
 }
 
 function onOffline() {
