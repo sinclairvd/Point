@@ -2,7 +2,7 @@
 
 function newsFeed(data){
 	//debug console.log(data);
-	var output='<ul data-role="listview">';
+	var output='<ul data-role="listview">';	
 	$.each(data.posts,function(key,val){
 
 		var tempDiv = document.createElement("tempDiv");
@@ -12,7 +12,7 @@ function newsFeed(data){
 
 		output += '<li>';
 		output += '<a href="#news" onclick="newsItem(' + val.id +')">';
-		output += '<h2>' + val.title + '</h2>';
+		output += '<h2>' + val.title + '</h2>';		
 		output += (val.thumbnail)?
 			'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
 			'<img src="images/default/makeapoint.png" alt="POiNT! Logo" />';
@@ -29,31 +29,17 @@ function newsItem(id){
 		function(data){
 			//console.log(data);
 			var output='';
-			output += '<h2>' + data.post.title + '</h2>';
-
-			var temp = data.post.content;
-			console.log("test " + temp);
-			//$('<div>').html(temp).find('a').replaceWith("test");
-
-
-			//var temp = document.createElement("temp");
-			//temp.innerHTML = data.post.content;
-			//temp.get.replaceWith("a target='_self'");
-			//$("a",temp).change(function(){
-			//	console.log("debug " + this.text());
-			//});
-			//output += temp.innerHTML;
-
+			output += '<h2>' + data.post.title + '</h2>';		
 			output += data.post.content;
-			$("#newsitem").html(output)
+			$('#newsitem').html(output)
         	$("#newsitem a:not([href^=mailto])").click(function(e) {
-        	    e.preventDefault();
-        	    window.open($(this).attr("href"), '_blank', 'location=yes');
-        	});
+            	e.preventDefault();
+              	window.open($(this).attr("href"), '_blank', 'location=yes');
+	        });
 	});	// get JSON Data for News Items
 } // newsItem
 
-function mapVideos(){
+function mapVideos(){		
 		$.getJSON('http://gdata.youtube.com/feeds/users/makeapointband/uploads?alt=json&max-results=30',
 		function(data){
 			//console.log(data);
@@ -65,12 +51,12 @@ function mapVideos(){
 					var id = data.feed.entry[i].id.$t.substr(38);
 
 					// edited by Francis 20130415 turn  this code on to use two column design
-					//var blocktype = ((i % 2)===1) ? 'b': 'a';
+					//var blocktype = ((i % 2)===1) ? 'b': 'a';				
 					//output += '<div class="ui-block-' + blocktype + '">';
 
 					output += '<div>';
 
-					output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';
+					output += '<a href="#videoplayer" data-transition="fade" onclick="playVideo(\'' + id + '\',\'' + title + '\',\'' + escape(description) + '\' )">';					
 					output += '<h3 class="movietitle">' + title + '</h3>';
 					output += '<img src="' + thumbnail + '" alt="' + title +'" />';
 					output += '</a>';
@@ -78,28 +64,27 @@ function mapVideos(){
 			}
 
 			$('#videolist').html(output);
-		});	// get JSON Data for MAP videos
+		});	// get JSON Data for MAP videos	
 }
 
-function playVideo(id, title, description){
+function playVideo(id, title, description){		
 	player.loadVideoById(id);
 
 }
 
 //function will be called when Youtube Iframe Player API async is done loading
 function onYouTubePlayerAPIReady() {
-	 player = new YT.Player('ytplayer', {
-		 width:'100%',
+	 player = new YT.Player('ytplayer', {  
+		 width:'100%',		 	  
 		 videoId: 'KBXqTv-sKd8'
     });
 }
 
-function studyFeed(){
-	checkConnection();	
+function studyFeed(){	
 	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_category_posts&id=17&callback=?',
 		function(data){
 			//debug console.log(data);
-			var output='<ul data-role="listview" data-filter="true">';
+			var output='<ul data-role="listview" data-filter="true">';	
 			$.each(data.posts,function(key,val){
 
 				var tempDiv = document.createElement("tempDiv");
@@ -109,7 +94,7 @@ function studyFeed(){
 
 				output += '<li>';
 				output += '<a href="#studypost" onclick="studyItem(' + val.id +')">';
-				output += '<h2 style="text-align:left;">' + val.title + '</h2>';
+				output += '<h2 style="text-align:left;">' + val.title + '</h2>';		
 				/* excluded by alissa 10/04/13 output += (val.thumbnail)?
 					'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
 					'<img src="images/makeapoint.png" alt="POiNT! Logo" />'; */
@@ -132,11 +117,11 @@ function studyItem(id){
 	});	// get JSON Data for Study Item
 } // studyItem
 
-function studyFeed_eng(){
+function studyFeed_eng(){	
 	$.getJSON('http://www.theblessing.nl/PWYM/?json=get_category_posts&id=19&callback=?',
 		function(data){
 			//debug console.log(data);
-			var output='<ul data-role="listview" data-filter="true">';
+			var output='<ul data-role="listview" data-filter="true">';	
 			$.each(data.posts,function(key,val){
 
 				var tempDiv = document.createElement("tempDiv");
@@ -146,7 +131,7 @@ function studyFeed_eng(){
 
 				output += '<li>';
 				output += '<a href="#studypost_eng" onclick="studyItem_eng(' + val.id +')">';
-				output += '<h2 style="text-align:left;">' + val.title + '</h2>';
+				output += '<h2 style="text-align:left;">' + val.title + '</h2>';		
 				/* excluded by alissa 10/04/13 output += (val.thumbnail)?
 					'<img src="' + val.thumbnail + '" alt="' + val.title +'" />':
 					'<img src="images/makeapoint.png" alt="POiNT! Logo" />'; */
@@ -178,7 +163,7 @@ function handleV2020RandomForm(e) {
         var next = "";
 		//alert("handle v2020 random form");
 		//trigger form validation with jquery validation plugin
-        $(this).validate();
+        $(this).validate();	
 
         //gather the fields
         var data = $(this).serializeArray();
@@ -213,11 +198,11 @@ function handleV2020RandomForm(e) {
             $.mobile.changePage(nextPage);
         } else {
 			//alert('no next form');
-
+            
 			var output = '';
 			for (property in formData) {
   				output += property + '=' + formData[property]+'&';
-			}
+			}						
 
 			if ($('#map_canvas').contents().length == 0) {
 
@@ -236,18 +221,18 @@ function handleV2020RandomForm(e) {
 				var defaultCoordinates = '52.070511,4.28381';
 				var lookupCoordinates = defaultCoordinates;
 
-				//get JSON Data with list of city in given country
+				//get JSON Data with list of city in given country	  		
 				$.getJSON('http://api.geonames.org/searchJSON?&country=' + country +'&maxRows=' + cityCount + '&username=pointyouth',
-					function(data){
+					function(data){	
 						//alert("json geonames call started");
 						//alter cityCount when the returned cityCount is lower then declared
 						if (data.totalResultsCount == 0){
 							//$('#city').html('<h2>Sorry no random city available</h2>');
-							//alert("no random city");
+							//alert("no random city");	
 							return;
 						}
 						else if (data.totalResultsCount < cityCount){
-							cityCount = data.totalResultsCount;
+							cityCount = data.totalResultsCount;	
 							//alert("less cities available");
 						}
 
@@ -255,55 +240,55 @@ function handleV2020RandomForm(e) {
 						//to filter out only cities in JSON result, we lookup another randomNumber if not a city but a region is returned
 						while(data.geonames[randomNumber].fclName != 'city, village,...'){
 							randomNumber = Math.floor(Math.random() * cityCount);
-						}
+						}				
 
 						// set random city
 						var outputcity='';
 						outputcity += '<h1>' + data.geonames[randomNumber].toponymName + '</h1>';
 
-						//declare and set city variable
-						a = data.geonames[randomNumber].toponymName;
+						//declare and set city variable			
+						a = data.geonames[randomNumber].toponymName;				
 
 						//add randomcity to emaildata
 						output += 'city=' + a;
 
-						//output random city info to page
-						//alert("1 city is " + a);
-						//debug output += cityCount;
+						//output random city info to page						 
+						//alert("1 city is " + a);		
+						//debug output += cityCount;			
 						$('#city').html("<p>Your Vision 20:20 Random city is:</p>" + outputcity);
-						//alert("2 city is " + a);
+						//alert("2 city is " + a);			
 
-						//update lookupCoordinates with longtitude and latitude of returned city
+						//update lookupCoordinates with longtitude and latitude of returned city 
 						lookupCoordinates = data.geonames[randomNumber].lat + "," + data.geonames[randomNumber].lng;
 
 						//clean out text and submit button
 						$('#findout').hide();
-						//alert("4 city is " + a);
+						//alert("4 city is " + a);	
 						//alert("hide show random city button");
 
 						//clean out earlier maps
 						$('#map_canvas').gmap('destroy');
-						//alert("5 city is " + a);
+						//alert("5 city is " + a);	
 
 						//declare marker icon url
 						var image = 'images/action/v2020flag.png';
-						//alert("6 city is " + a);
+						//alert("6 city is " + a);	
 
 						//declare and set infowindow content
 						var infowindowContent = '<p class="infowindow">Your Vision 20:20 Random city: ' + a +'</p>';
-						//alert("7 city is " + a);
+						//alert("7 city is " + a);	
 
-						//draw google maps api
+						//draw google maps api							
 						$('#map_canvas').gmap({'zoom':8, 'center':lookupCoordinates}).bind('init', function(ev, map) {
 							$('#map_canvas').gmap('addMarker', {'position': lookupCoordinates, 'bounds': false,'animation':google.maps.Animation.BOUNCE,'icon':image}).click(function() {
 								$('#map_canvas').gmap('openInfoWindow', {'content': infowindowContent}, this);
 							});
 						});
 
-						//alert("just drawn map canvas");
+						//alert("just drawn map canvas");	  
 						//alert("8 city is " + a);
 
-						//alert("9 city is " + a);
+						//alert("9 city is " + a);					
 
 						$.ajax({
 								type: "POST",
@@ -314,11 +299,11 @@ function handleV2020RandomForm(e) {
 								dataType: "json",
 								crossDomain:true,
 
-								success: function(msg){
+								success: function(msg){							
 									$("#notification").html(msg.message + '<br /><br /><a href="https://twitter.com/intent/tweet?status=Vision+20%3A20+Random+city%3A+' + a + '+Join+Random+city+in+POiNT+Youth+mobile+app" class="TrackSocialLink" target="_blank"><img src="http://www.maasbachradio.com/webplayer/twitter-logo.png" width="20" height="20" border="0">Share on Twitter</a>');
-									//alert('json email succes: ' + msg.message);
+									//alert('json email succes: ' + msg.message);														
 								},
-								error: function(msg){
+								error: function(msg){							
 									$("#notification").html(msg.message);
 									//alert('json email error');
 								}
@@ -336,44 +321,5 @@ function handleV2020RandomForm(e) {
 	}
     e.preventDefault();
 	//alert("just prevented default post");
-
+    
 };
-
-function checkConnection() {
-        var networkState = navigator.network.connection.type;
-
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.NONE]     = 'No network connection';
- 
-        alert('Connection type: '+ states[networkState]);
-		if(networkState == 'No network connection'){
-			// Handle the offline event
-		    // redirect to offline page   
-			$.mobile.changePage('#offline');
-			return false;		    
-		}
-}
-
-function onOffline() {
-    // Handle the offline event
-    alert("You are offline!");
-    //var offline = $('#offline');
-    //var online = $('#online');
-    //offline.show();
-    //online.hide();
-}
-
-function onOnline() {
-    // Handle the online event
-    alert("You are online!");
-    //var online = $('#online');
-    //var offline = $('#offline');
-    //online.show();
-    //offline.hide();
-}
