@@ -19,14 +19,10 @@
 <link href="jquery-mobile/jQuery.css" rel="stylesheet" type="text/css"/>
 <!-- Custom setup -->
 <script src="js/py.js" type="text/javascript"></script>
-<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 
 <link href="css/point.css" rel="stylesheet" type="text/css"/>
 </head> 
 <body> 
-<!-- Dialog: No Internet Connection -->
-<div id="dialog" data-role="dialog">No Internet Connection</div>
-<!-- Dialog -->
 <!-- Page: Home -->
 <div data-role="page" id="home" data-theme="a">
 	<div data-role="header" data-position="fixed" data-id="py_header">
@@ -77,9 +73,9 @@
 	</div><!-- header -->
 	<div data-role="content">	
     	<ul data-role="listview">
-			<li data-icon="false"><a href="http://www.pointyouth.com" target="_blank">Website</a></li>
-        	<li data-icon="false"><a href="http://www.facebook.com/pages/POiNTYouth/111803732303843" target="_blank">Facebook</a></li>
-        	<li data-icon="false"><a href="http://www.youtube.com/makeapointband" target="_blank">YouTube channel</a></li>
+			<li data-icon="false"><a href="#" onclick="window.open('http://www.pointyouth.com', '_blank', 'location=yes');">Website</a></li>
+        	<li data-icon="false"><a href="#" onclick="window.open('http://www.facebook.com/pages/POiNTYouth/111803732303843', '_blank', 'location=yes');">Facebook</a></li>
+        	<li data-icon="false"><a href="#" onclick="window.open('http://www.youtube.com/makeapointband', '_blank', 'location=yes');">YouTube channel</a></li>
         	<li data-icon="false"><a href="mailto:info@pointyouth.com">Write us</a></li>
         	<li data-icon="false"><a href="mailto:info@gpnetwork.com">Prayer Request</a></li>  
         	<li data-icon="arrow-r"><a href="#maasbachradio" data-icon="arrow-r" data-transition="slide">Listen to Maasbach Radio</a></li>
@@ -151,15 +147,15 @@ The question now is: how do you do it? Therefore he gave us useful tips & tricks
        <input type="hidden" name="nextStep" value="step2">      	
     	<div data-role="fieldcontain">
 			<label for="teamname">What's your team name?</label>
-			<input type="text" name="teamname" id="teamname" value="" placeholder="Team name" required />
+			<input type="text" name="teamname" id="teamname" value="" placeholder="Team name" />
 		</div>
         <div data-role="fieldcontain">
 			<label for="yourname">Name:</label>
-			<input type="text" name="yourname" id="yourname" value="" placeholder="Your name" required />
+			<input type="text" name="yourname" id="yourname" value="" placeholder="Your name" />
 		</div>
         <div data-role="fieldcontain">
 			<label for="youremail">Email:</label>
-			<input type="text" name="youremail" id="youremail" value="" placeholder="Your email" required />
+			<input type="text" name="youremail" id="youremail" value="" placeholder="Your email" />
 		</div> 
          <div data-role="fieldcontain"> 
 				<input type="submit" name="submit1" value="Next" data-inline="true"  /> 
@@ -453,11 +449,11 @@ The question now is: how do you do it? Therefore he gave us useful tips & tricks
                 <div id="set">           
                 	<div data-role="fieldcontain">
                 		<label for="teammember1">Team member 1</label>
-						<input type="text" name="teammember1" id="teammember1" value="" placeholder="Team member name" required />
+						<input type="text" name="teammember1" id="teammember1" value="" placeholder="Team member name" />
                 	</div>
                		<div data-role="fieldcontain">
                 		<label for="teammember2">Team member 2</label>
-						<input type="text" name="teammember2" id="teammember2" value="" placeholder="Team member name"  required />
+						<input type="text" name="teammember2" id="teammember2" value="" placeholder="Team member name"  />
                 	</div>
                 </div>
                 <div data-role="fieldcontain"> 
@@ -730,7 +726,7 @@ point@theblessingzwolle.com</a></p>
     });
 
 // bind form handling call to form init
-$("#v2020random").bind("pageinit", function() {
+$("#v2020random").bind("pageinit", function() {	
 	$("form.v2020randomform").bind("submit", handleV2020RandomForm);    
 });
 

@@ -114,6 +114,10 @@ function studyItem(id){
 			output += '<h2>' + data.post.title + '</h2>';
 			output += data.post.content;
 			$('#studyitem').html(output);
+			$("#studyitem a:not([href^=mailto])").click(function(e) {
+            	e.preventDefault();
+              	window.open($(this).attr("href"), '_blank', 'location=yes');
+	        });
 	});	// get JSON Data for Study Item
 } // studyItem
 
@@ -151,6 +155,11 @@ function studyItem_eng(id){
 			output += '<h2>' + data.post.title + '</h2>';
 			output += data.post.content;
 			$('#studyitem_eng').html(output);
+			$("#studyitem_eng a:not([href^=mailto])").click(function(e) {
+            	e.preventDefault();
+              	window.open($(this).attr("href"), '_blank', 'location=yes');
+	        });
+			
 	});	// get JSON Data for Study Item
 } // studyItem_eng
 
@@ -161,9 +170,23 @@ var selectedCountry = "";
 
 function handleV2020RandomForm(e) {
         var next = "";
-		//alert("handle v2020 random form");
-		//trigger form validation with jquery validation plugin
-        $(this).validate();	
+		//alert("handle v2020 random form");	
+					
+		var teamname = $("#teamname").val();
+		if(teamname == ''){
+			alert("Fill in your team name");	
+			return false;
+		}
+		var yourname = $("#yourname").val();
+		if(yourname == ''){
+			alert("Fill in your name");	
+			return false;
+		}
+		var youremail = $("#youremail").val();
+		if(youremail == ''){
+			alert("Fill in your email address");	
+			return false;
+		}
 
         //gather the fields
         var data = $(this).serializeArray();
@@ -299,8 +322,9 @@ function handleV2020RandomForm(e) {
 								dataType: "json",
 								crossDomain:true,
 
-								success: function(msg){							
-									$("#notification").html(msg.message + '<br /><br /><a href="https://twitter.com/intent/tweet?status=Vision+20%3A20+Random+city%3A+' + a + '+Join+Random+city+in+POiNT+Youth+mobile+app" class="TrackSocialLink" target="_blank"><img src="http://www.maasbachradio.com/webplayer/twitter-logo.png" width="20" height="20" border="0">Share on Twitter</a>');
+								success: function(msg){
+									var klik ="window.open('https://twitter.com/intent/tweet?status=Vision+20%3A20+Random+city%3A+" + a + "+Join+Random+city+in+POiNT+Youth+mobile+app','_blank','location=yes')";							
+									$("#notification").html(msg.message + '<br /><br /><a href="#" onclick="' + klik +'" class="TrackSocialLink"><img src="http://www.maasbachradio.com/webplayer/twitter-logo.png" width="20" height="20" border="0">Share on Twitter</a>');
 									//alert('json email succes: ' + msg.message);														
 								},
 								error: function(msg){							
