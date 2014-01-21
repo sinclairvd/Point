@@ -166,7 +166,7 @@ function studyItem_eng(id){
 var a = "Amsterdam";
 var formData = {};
 var selectedCountry = "";
-
+var selectedProvince = "";
 
 function handleV2020RandomForm(e) {
         var next = "";
@@ -204,6 +204,7 @@ function handleV2020RandomForm(e) {
 			if(data[i].name=="submit4") { continue; }
 			//if country, store it globally for later use with gmaps
 			if (data[i].name=="country"){selectedCountry=data[i].value;}
+			if (data[i].name=="province"){selectedProvince=data[i].value;}
             //if we have it, add it to a list. This is not "comma" safe.
             //not working with checkboxes, turned off by SJS 20130416
 			//if(formData.hasOwnProperty(data[i].name)) formData[data[i].name] += ","+data[i].value;
@@ -233,6 +234,9 @@ function handleV2020RandomForm(e) {
 
 				//declare country variable
 				var country = selectedCountry;
+				
+				//declare country variable
+				var province = selectedProvince;
 
 				//declare amount of cities to lookup
 				var cityCount = 500;
@@ -245,7 +249,7 @@ function handleV2020RandomForm(e) {
 				var lookupCoordinates = defaultCoordinates;
 
 				//get JSON Data with list of city in given country	  		
-				$.getJSON('http://api.geonames.org/searchJSON?&country=' + country +'&maxRows=' + cityCount + '&username=pointyouth',
+				$.getJSON('http://api.geonames.org/searchJSON?&country=' + country + '&q=' + province +'&maxRows=' + cityCount + '&username=pointyouth',
 					function(data){	
 						//alert("json geonames call started");
 						//alter cityCount when the returned cityCount is lower then declared
